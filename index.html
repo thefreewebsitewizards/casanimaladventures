@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>thewildpatchchallenge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sage-50: #f6f7f6;
+            --sage-100: #e8ebe8;
+            --sage-200: #d1d7d1;
+            --sage-300: #a8b5a8;
+            --sage-400: #7a8a7a;
+            --sage-500: #5a6b5a;
+            --sage-600: #4a5a4a;
+            --sage-700: #3d4a3d;
+            
+            --terracotta-50: #fdf6f3;
+            --terracotta-100: #fae8e1;
+            --terracotta-200: #f4cfc0;
+            --terracotta-300: #eba888;
+            --terracotta-400: #e07a4f;
+            --terracotta-500: #d4622a;
+            --terracotta-600: #b8501f;
+            --terracotta-700: #9a421c;
+            
+            --forest-50: #f0f4f0;
+            --forest-100: #dce6dc;
+            --forest-200: #b8ccb8;
+            --forest-300: #8fad8f;
+            --forest-400: #6b8e6b;
+            --forest-500: #4a6741;
+            --forest-600: #3d5435;
+            --forest-700: #2f4129;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(74, 103, 65, 0.9), rgba(157, 181, 143, 0.8)), 
+                        url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .nature-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a8b5a8' fill-opacity='0.1'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--sage-500), var(--forest-500));
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--sage-600), var(--forest-600));
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--terracotta-400), var(--terracotta-500));
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, var(--terracotta-500), var(--terracotta-600));
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .text-sage-500 { color: var(--sage-500); }
+        .text-sage-600 { color: var(--sage-600); }
+        .text-sage-700 { color: var(--sage-700); }
+        .text-terracotta-500 { color: var(--terracotta-500); }
+        .text-terracotta-600 { color: var(--terracotta-600); }
+        .text-forest-500 { color: var(--forest-500); }
+        .text-forest-600 { color: var(--forest-600); }
+        
+        .bg-sage-50 { background-color: var(--sage-50); }
+        .bg-sage-100 { background-color: var(--sage-100); }
+        .bg-sage-500 { background-color: var(--sage-500); }
+        .bg-sage-600 { background-color: var(--sage-600); }
+        .bg-sage-700 { background-color: var(--sage-700); }
+        .bg-terracotta-50 { background-color: var(--terracotta-50); }
+        .bg-terracotta-100 { background-color: var(--terracotta-100); }
+        .bg-forest-50 { background-color: var(--forest-50); }
+        .bg-forest-100 { background-color: var(--forest-100); }
+        .bg-forest-500 { background-color: var(--forest-500); }
+        .bg-forest-600 { background-color: var(--forest-600); }
+        
+        .border-sage-200 { border-color: var(--sage-200); }
+        .border-terracotta-200 { border-color: var(--terracotta-200); }
+        
+        /* Enhanced mobile menu styling */
+        @media (max-width: 768px) {
+            .hero-bg {
+                background-attachment: scroll;
+            }
+            
+            /* Mobile navigation improvements */
+            #mobile-menu {
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                border-radius: 0 0 1rem 1rem;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            }
+            
+            /* Mobile hero text scaling */
+            .hero-title {
+                font-size: 2.5rem !important;
+                line-height: 1.2;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.125rem !important;
+            }
+            
+            /* Mobile button stacking */
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+            }
+            
+            .hero-buttons a {
+                width: 100%;
+                text-align: center;
+            }
+            
+            /* Mobile stats grid */
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1rem;
+            }
+            
+            /* Mobile services cards */
+            .services-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem;
+            }
+            
+            /* Mobile portfolio grid */
+            .portfolio-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem;
+            }
+            
+            /* Mobile eco-travel grid */
+            .eco-travel-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem;
+            }
+            
+            /* Mobile contact form */
+            .contact-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem;
+            }
+            
+            /* Mobile footer */
+            .footer-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            /* Mobile padding adjustments */
+            .section-padding {
+                padding: 3rem 0 !important;
+            }
+            
+            /* Mobile text sizing */
+            .mobile-text-lg {
+                font-size: 1.125rem;
+            }
+            
+            .mobile-text-xl {
+                font-size: 1.25rem;
+            }
+            
+            /* Mobile spacing */
+            .mobile-mb-8 {
+                margin-bottom: 2rem;
+            }
+            
+            .mobile-mb-12 {
+                margin-bottom: 3rem;
+            }
+        }
+        
+        /* Tablet responsive adjustments */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .tablet-grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .tablet-text-4xl {
+                font-size: 2.25rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-stone-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 rounded-full overflow-hidden">
+                        <img src="images/caslogo.jpg" alt="Logo" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-stone-800">thewildpatchchallenge</h1>
+                        <p class="text-sm text-sage-600 font-medium">Travel Zoologist & Wildlife Guide</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-stone-700 hover:text-sage-600 font-medium transition-colors">Home</a>
+                    <a href="#about" class="text-stone-700 hover:text-sage-600 font-medium transition-colors">About</a>
+                    <a href="#services" class="text-stone-700 hover:text-sage-600 font-medium transition-colors">Services</a>
+                    <a href="#wild-patch" class="text-stone-700 hover:text-sage-600 font-medium transition-colors">Wild Patch Challenge</a>
+                    <a href="#eco-travel" class="text-stone-700 hover:text-sage-600 font-medium transition-colors">Eco Travel</a>
+                    <a href="#portfolio" class="text-stone-700 hover:text-sage-600 font-medium transition-colors">Portfolio</a>
+                    <a href="#contact" class="btn-primary text-white px-6 py-2 rounded-full font-medium">Contact</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-stone-700 hover:text-sage-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="#home" class="text-stone-700 hover:text-sage-600 font-medium py-2 border-b border-stone-200">Home</a>
+                    <a href="#about" class="text-stone-700 hover:text-sage-600 font-medium py-2 border-b border-stone-200">About</a>
+                    <a href="#services" class="text-stone-700 hover:text-sage-600 font-medium py-2 border-b border-stone-200">Services</a>
+                    <a href="#wild-patch" class="text-stone-700 hover:text-sage-600 font-medium py-2 border-b border-stone-200">Wild Patch Challenge</a>
+                    <a href="#eco-travel" class="text-stone-700 hover:text-sage-600 font-medium py-2 border-b border-stone-200">Eco Travel</a>
+                    <a href="#portfolio" class="text-stone-700 hover:text-sage-600 font-medium py-2 border-b border-stone-200">Portfolio</a>
+                    <a href="#contact" class="btn-primary text-white px-6 py-3 rounded-full font-medium text-center mt-4">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center text-white relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/20"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="max-w-4xl mx-auto fade-in">
+                <h1 class="hero-title font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
+                    Explore. <span class="text-yellow-300">Conserve.</span>
+                    <br>Adventure.
+                </h1>
+                <p class="hero-subtitle text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-stone-100 leading-relaxed max-w-3xl mx-auto px-4">
+                    Join me on ethical wildlife adventures and conservation journeys. Discover opportunities for internships, study abroad programs, and transformative travel experiences that make a difference.
+                </p>
+                <div class="hero-buttons flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4">
+                    <a href="#services" class="btn-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold w-full sm:w-auto text-center">
+                        <i class="fas fa-compass mr-2"></i>Explore Opportunities
+                    </a>
+                    <a href="#contact" class="bg-transparent border-2 border-white hover:bg-white hover:text-stone-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all w-full sm:w-auto text-center">
+                        <i class="fas fa-calendar mr-2"></i>Schedule Meeting
+                    </a>
+                </div>
+                
+                <!-- Stats -->
+                <div class="stats-grid grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mt-12 sm:mt-16 px-4">
+                    <div class="text-center">
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-300 mb-1 sm:mb-2">50+</div>
+                        <div class="text-xs sm:text-sm md:text-base text-stone-200">Countries Explored</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-300 mb-1 sm:mb-2">200+</div>
+                        <div class="text-xs sm:text-sm md:text-base text-stone-200">Students Guided</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-300 mb-1 sm:mb-2">15+</div>
+                        <div class="text-xs sm:text-sm md:text-base text-stone-200">Years Experience</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-300 mb-1 sm:mb-2">100%</div>
+                        <div class="text-xs sm:text-sm md:text-base text-stone-200">Ethical Travel</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding py-20 bg-white nature-pattern">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="tablet-text-4xl font-display text-4xl md:text-5xl font-bold text-stone-800 mb-6">
+                        Meet Your <span class="text-sage-600">Wildlife Guide</span>
+                    </h2>
+                    <p class="mobile-text-xl text-xl text-stone-600 max-w-3xl mx-auto">
+                        Passionate about connecting people with nature through ethical, educational, and transformative experiences.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="fade-in">
+                        <img src="images/cas.jpg" 
+                             alt="Cassandra in the field" 
+                             class="rounded-2xl shadow-2xl w-full h-96 object-cover">
+                    </div>
+                    
+                    <div class="fade-in">
+                        <h3 class="font-display text-3xl font-bold text-stone-800 mb-6">Hi, I'm Cassandra! 🦧🌎🐾</h3>
+                        <p class="text-stone-600 mb-6 leading-relaxed">
+                            As a Travel Zoologist and Wildlife Guide, I've dedicated my career to bridging the gap between conservation science and accessible education. My mission is to provide meaningful opportunities for aspiring biologists and nature enthusiasts to gain hands-on experience in the field.
+                        </p>
+                        <p class="text-stone-600 mb-6 leading-relaxed">
+                            Through carefully curated internships, study abroad programs, and ethical wildlife adventures, I help others develop the skills and passion needed to make a real difference in conservation.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-8">
+                            <div class="bg-sage-50 p-4 rounded-xl">
+                                <i class="fas fa-graduation-cap text-sage-600 text-2xl mb-2"></i>
+                                <h4 class="font-semibold text-stone-800">Education Focus</h4>
+                                <p class="text-sm text-stone-600">Hands-on learning experiences</p>
+                            </div>
+                            <div class="bg-terracotta-50 p-4 rounded-xl">
+                                <i class="fas fa-heart text-terracotta-600 text-2xl mb-2"></i>
+                                <h4 class="font-semibold text-stone-800">Conservation</h4>
+                                <p class="text-sm text-stone-600">Ethical wildlife protection</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex space-x-4">
+                            <a href="https://instagram.com/cassandracdray" target="_blank" class="w-12 h-12 bg-sage-100 hover:bg-sage-200 text-sage-700 rounded-full flex items-center justify-center transition-all">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://instagram.com/casanimaladventures" target="_blank" class="w-12 h-12 bg-terracotta-100 hover:bg-terracotta-200 text-terracotta-700 rounded-full flex items-center justify-center transition-all">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@casanimaladventures" target="_blank" class="w-12 h-12 bg-red-100 hover:bg-red-200 text-red-700 rounded-full flex items-center justify-center transition-all">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://www.facebook.com/profile.php?id=61567946146382" target="_blank" class="w-12 h-12 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-full flex items-center justify-center transition-all">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="https://www.tiktok.com/@casanimaladventures" target="_blank" class="w-12 h-12 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full flex items-center justify-center transition-all">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                            <a href="https://wa.me/13303383270" target="_blank" class="w-12 h-12 bg-green-100 hover:bg-green-200 text-green-700 rounded-full flex items-center justify-center transition-all">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://linktr.ee/casanimaladventures?utm_source=linktree_profile_share&ltsid=a9b9f2de-1f16-4535-b291-100bbaee9013" target="_blank" class="w-12 h-12 bg-purple-100 hover:bg-purple-200 text-purple-700 rounded-full flex items-center justify-center transition-all">
+                                <i class="fas fa-link"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding py-12 sm:py-16 md:py-20 bg-sage-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8 sm:mb-12 md:mb-16 fade-in">
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-stone-800 mb-4 sm:mb-6">
+                    My <span class="text-sage-600">Services</span>
+                </h2>
+                <p class="mobile-text-xl text-lg sm:text-xl text-stone-600 max-w-3xl mx-auto px-4">
+                    Comprehensive opportunities designed to advance your career in biology and conservation.
+                </p>
+            </div>
+            
+            <div class="services-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                <!-- Wildlife Coaching -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 card-hover fade-in flex flex-col">
+                    <div class="w-16 h-16 bg-sage-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-user-tie text-sage-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-stone-800 mb-4">Wildlife Coaching</h3>
+                    <p class="text-stone-600 mb-6">One-on-one mentorship to develop your conservation career path and field skills.</p>
+                    <ul class="space-y-2 mb-6 flex-grow">
+                        <li class="flex items-center text-stone-600">
+                            <i class="fas fa-check text-sage-600 mr-2"></i>
+                            Career guidance & planning
+                        </li>
+                        <li class="flex items-center text-stone-600">
+                            <i class="fas fa-check text-sage-600 mr-2"></i>
+                            Skill development sessions
+                        </li>
+                        <li class="flex items-center text-stone-600">
+                            <i class="fas fa-check text-sage-600 mr-2"></i>
+                            Portfolio building
+                        </li>
+                    </ul>
+                    <a href="#contact" class="block w-full btn-primary text-white text-center py-3 rounded-lg font-semibold mt-auto">
+                        Learn More
+                    </a>
+                </div>
+                
+                <!-- Internships -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 card-hover fade-in flex flex-col">
+                    <div class="w-16 h-16 bg-terracotta-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-briefcase text-terracotta-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-stone-800 mb-4">Internships</h3>
+                    <p class="text-stone-600 mb-6">Hands-on field experience with wildlife research and conservation projects.</p>
+                    <ul class="space-y-2 mb-6 flex-grow">
+                        <li class="flex items-center text-stone-600">
+                            <i class="fas fa-check text-terracotta-600 mr-2"></i>
+                            Field research experience
+                        </li>
+                        <li class="flex items-center text-stone-600">
+                            <i class="fas fa-check text-terracotta-600 mr-2"></i>
+                            Data collection & analysis
+                        </li>
+                        <li class="flex items-center text-stone-600">
+                            <i class="fas fa-check text-terracotta-600 mr-2"></i>
+                            Professional networking
+                        </li>
+                    </ul>
+                    <a href="#contact" class="block w-full btn-primary text-white text-center py-3 rounded-lg font-semibold mt-auto">
+                        Apply Now
+                    </a>
+                </div>
+                
+                <!-- Study Abroad -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 card-hover fade-in flex flex-col">
+                    <div class="w-16 h-16 bg-forest-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-globe text-forest-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-stone-800 mb-4">Study Abroad</h3>
+                    <p class="text-stone-600 mb-6">Affordable international programs combining education with conservation work.</p>
+                    <ul class="space-y-2 mb-6 flex-grow">
+                        <li class="flex items-center text-stone-600">
+                            <i class="fas fa-check text-forest-600 mr-2"></i>
+                            Cultural immersion
+                        </li>
+                        <li class="flex items-center text-stone-600">
+                            <i class="fas fa-check text-forest-600 mr-2"></i>
+                            Academic credit available
+                        </li>
+                        <li class="flex items-center text-stone-600">
+                            <i class="fas fa-check text-forest-600 mr-2"></i>
+                            Scholarship opportunities
+                        </li>
+                    </ul>
+                    <a href="#contact" class="block w-full btn-primary text-white text-center py-3 rounded-lg font-semibold mt-auto">
+                        Explore Programs
+                    </a>
+                </div>
+                
+                <!-- Wildlife Trips -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 card-hover fade-in flex flex-col">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-binoculars text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-stone-800 mb-4">Wildlife Trips</h3>
+                    <p class="text-stone-600 mb-6">Ethical wildlife adventures for conservation-minded travelers and researchers.</p>
+                    <ul class="space-y-2 mb-6 flex-grow">
+                        <li class="flex items-center text-stone-600">
+                            <i class="fas fa-check text-yellow-600 mr-2"></i>
+                            Small group experiences
+                        </li>
+                        <li class="flex items-center text-stone-600">
+                            <i class="fas fa-check text-yellow-600 mr-2"></i>
+                            Expert-led expeditions
+                        </li>
+                        <li class="flex items-center text-stone-600">
+                            <i class="fas fa-check text-yellow-600 mr-2"></i>
+                            Conservation impact
+                        </li>
+                    </ul>
+                    <a href="#contact" class="block w-full btn-primary text-white text-center py-3 rounded-lg font-semibold mt-auto">
+                        View Trips
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wild Patch Challenge Section -->
+    <section id="wild-patch" class="section-padding py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="font-display text-4xl md:text-5xl font-bold text-stone-800 mb-6">
+                        The <span class="text-sage-600">Wild Patch Challenge</span>
+                    </h2>
+                    <p class="text-xl text-stone-600 max-w-3xl mx-auto">
+                        Join our community initiative to create wildlife-friendly spaces and document biodiversity in your local area.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="fade-in">
+                        <h3 class="font-display text-3xl font-bold text-stone-800 mb-6">What is the Wild Patch Challenge?</h3>
+                        <p class="text-stone-600 mb-6 leading-relaxed">
+                            The Wild Patch Challenge is an ongoing community project where participants create and maintain wildlife-friendly spaces while documenting the species they encounter. It's a hands-on way to contribute to local conservation efforts.
+                        </p>
+                        
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-sage-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-seedling text-sage-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-stone-800 mb-1">Create Your Patch</h4>
+                                    <p class="text-stone-600 text-sm">Design a wildlife-friendly space in your yard, balcony, or community area.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-terracotta-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-camera text-terracotta-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-stone-800 mb-1">Document Wildlife</h4>
+                                    <p class="text-stone-600 text-sm">Record the species that visit your patch and share your observations.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-forest-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-users text-forest-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-stone-800 mb-1">Join the Community</h4>
+                                    <p class="text-stone-600 text-sm">Connect with other participants and share your conservation journey.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdOy7bBna_ySJ8fcXnLkUXwQktL9L5D89LHbdMXNo_n4N0esA/viewform" target="_blank" class="btn-primary text-white px-6 py-3 rounded-lg font-semibold text-center">
+                                <i class="fas fa-leaf mr-2"></i>Join the Challenge
+                            </a>
+                            <a href="https://sites.google.com/miamioh.edu/thewildpatchchallenge/home" target="_blank" class="bg-transparent border-2 border-sage-500 text-sage-600 hover:bg-sage-500 hover:text-white px-6 py-3 rounded-lg font-semibold text-center transition-all">
+                                <i class="fas fa-external-link-alt mr-2"></i>View Resources
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="fade-in">
+                        <div class="bg-sage-50 rounded-2xl p-8">
+                            <h4 class="font-display text-2xl font-bold text-stone-800 mb-6">Challenge Highlights</h4>
+                            
+                            <div class="grid grid-cols-2 gap-6 mb-8">
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-sage-600 mb-2">500+</div>
+                                    <div class="text-stone-600 text-sm">Participants</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-terracotta-600 mb-2">1,200+</div>
+                                    <div class="text-stone-600 text-sm">Species Documented</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-forest-600 mb-2">50+</div>
+                                    <div class="text-stone-600 text-sm">Cities Involved</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-yellow-600 mb-2">2</div>
+                                    <div class="text-stone-600 text-sm">Years Running</div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-xl p-6">
+                                <h5 class="font-semibold text-stone-800 mb-3">Recent Discoveries</h5>
+                                <div class="space-y-2 text-sm text-stone-600">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-butterfly text-yellow-500 mr-2"></i>
+                                        Monarch butterfly migration patterns
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-dove text-blue-500 mr-2"></i>
+                                        Urban bird nesting behaviors
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-spider text-green-500 mr-2"></i>
+                                        Native pollinator populations
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eco Travel Tips Section -->
+    <section id="eco-travel" class="section-padding py-20 bg-terracotta-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-stone-800 mb-6">
+                    Ethical <span class="text-terracotta-600">Travel Guide</span>
+                </h2>
+                <p class="text-xl text-stone-600 max-w-3xl mx-auto">
+                    Learn how to travel responsibly and make a positive impact on the places and wildlife you visit.
+                </p>
+            </div>
+            
+            <div class="eco-travel-grid grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Tip 1 -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 card-hover fade-in">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-leaf text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-800 mb-4">Choose Eco-Friendly Accommodations</h3>
+                    <p class="text-stone-600 mb-4">Look for certified sustainable lodges and hotels that prioritize environmental conservation and support local communities.</p>
+                    <ul class="space-y-2 text-sm text-stone-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-600 mr-2"></i>
+                            Green certifications
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-600 mr-2"></i>
+                            Local ownership
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-600 mr-2"></i>
+                            Renewable energy use
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Tip 2 -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 card-hover fade-in">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-paw text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-800 mb-4">Respect Wildlife</h3>
+                    <p class="text-stone-600 mb-4">Maintain safe distances, never feed wild animals, and choose ethical wildlife experiences that prioritize animal welfare.</p>
+                    <ul class="space-y-2 text-sm text-stone-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-600 mr-2"></i>
+                            Observe from distance
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-600 mr-2"></i>
+                            No touching or feeding
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-600 mr-2"></i>
+                            Support sanctuaries
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Tip 3 -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 card-hover fade-in">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-recycle text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-800 mb-4">Minimize Your Footprint</h3>
+                    <p class="text-stone-600 mb-4">Reduce waste, conserve water and energy, and choose sustainable transportation options whenever possible.</p>
+                    <ul class="space-y-2 text-sm text-stone-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple-600 mr-2"></i>
+                            Reusable water bottles
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple-600 mr-2"></i>
+                            Public transportation
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple-600 mr-2"></i>
+                            Pack light
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Tip 4 -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 card-hover fade-in">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-handshake text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-800 mb-4">Support Local Communities</h3>
+                    <p class="text-stone-600 mb-4">Buy from local artisans, eat at family-owned restaurants, and hire local guides to ensure your money benefits the community.</p>
+                    <ul class="space-y-2 text-sm text-stone-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-orange-600 mr-2"></i>
+                            Local guides
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-orange-600 mr-2"></i>
+                            Community markets
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-orange-600 mr-2"></i>
+                            Cultural respect
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Tip 5 -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 card-hover fade-in">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-camera text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-800 mb-4">Document Responsibly</h3>
+                    <p class="text-stone-600 mb-4">Share your experiences to inspire others while being mindful of sensitive locations and wildlife behavior.</p>
+                    <ul class="space-y-2 text-sm text-stone-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            No flash photography
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            Respect privacy
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-600 mr-2"></i>
+                            Educational content
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Tip 6 -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 card-hover fade-in">
+                    <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-seedling text-teal-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-800 mb-4">Give Back</h3>
+                    <p class="text-stone-600 mb-4">Participate in conservation projects, volunteer with local organizations, or contribute to wildlife protection efforts.</p>
+                    <ul class="space-y-2 text-sm text-stone-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-teal-600 mr-2"></i>
+                            Volunteer opportunities
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-teal-600 mr-2"></i>
+                            Conservation donations
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-teal-600 mr-2"></i>
+                            Citizen science
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 fade-in">
+                <a href="#contact" class="btn-secondary text-white px-8 py-4 rounded-full text-lg font-semibold">
+                    <i class="fas fa-download mr-2"></i>Get Complete Travel Guide
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section-padding py-12 sm:py-16 md:py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8 sm:mb-12 md:mb-16 fade-in">
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-stone-800 mb-4 sm:mb-6">
+                    My <span class="text-sage-600">Portfolio</span>
+                </h2>
+                <p class="mobile-text-xl text-lg sm:text-xl text-stone-600 max-w-3xl mx-auto px-4">
+                    Explore my work in wildlife conservation, research, and educational adventures around the world.
+                </p>
+            </div>
+            
+            <!-- Portfolio Categories -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-12 fade-in px-4 overflow-x-auto">
+                <button class="portfolio-filter active px-4 sm:px-6 py-2 sm:py-3 bg-sage-500 text-white rounded-full font-medium transition-all text-sm sm:text-base whitespace-nowrap" data-filter="all">
+                    All Projects
+                </button>
+                <button class="portfolio-filter px-4 sm:px-6 py-2 sm:py-3 bg-stone-200 text-stone-700 hover:bg-sage-500 hover:text-white rounded-full font-medium transition-all text-sm sm:text-base whitespace-nowrap" data-filter="research">
+                    Research
+                </button>
+                <button class="portfolio-filter px-4 sm:px-6 py-2 sm:py-3 bg-stone-200 text-stone-700 hover:bg-sage-500 hover:text-white rounded-full font-medium transition-all text-sm sm:text-base whitespace-nowrap" data-filter="education">
+                    Education
+                </button>
+                <button class="portfolio-filter px-4 sm:px-6 py-2 sm:py-3 bg-stone-200 text-stone-700 hover:bg-sage-500 hover:text-white rounded-full font-medium transition-all text-sm sm:text-base whitespace-nowrap" data-filter="conservation">
+                    Conservation
+                </button>
+                <button class="portfolio-filter px-4 sm:px-6 py-2 sm:py-3 bg-stone-200 text-stone-700 hover:bg-sage-500 hover:text-white rounded-full font-medium transition-all text-sm sm:text-base whitespace-nowrap" data-filter="travel">
+                    Travel
+                </button>
+            </div>
+            
+            <!-- Portfolio Grid -->
+            <div class="portfolio-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Portfolio Item 1 -->
+                <div class="portfolio-item fade-in" data-category="research conservation">
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                        <div class="relative cursor-pointer" onclick="window.open('https://youtu.be/2IeCpGqBlhk', '_blank')">
+                            <img src="https://img.youtube.com/vi/2IeCpGqBlhk/maxresdefault.jpg" alt="Wildlife Research Project" class="w-full h-48 object-cover rounded-t-2xl">
+                            <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-t-2xl">
+                                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-play text-white text-xl ml-1"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center space-x-2 mb-3">
+                                <span class="px-3 py-1 bg-sage-100 text-sage-700 text-xs font-medium rounded-full">Research</span>
+                                <span class="px-3 py-1 bg-terracotta-100 text-terracotta-700 text-xs font-medium rounded-full">Conservation</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-stone-800 mb-3">Rescued Beaver's Crunchy ASMR 🦫 Red Wolf Sanctuary</h3>
+                            <p class="text-stone-600 text-sm mb-4">Immerse yourself in the soothing, tingle-inducing sounds of a rescued beaver's gentle munching as it savors its favorite treats in this captivating ASMR video.</p>
+                            <a href="https://youtu.be/2IeCpGqBlhk?si=arrXi_l6rQnpZkaR" target="_blank" class="text-sage-600 hover:text-sage-700 font-medium text-sm">
+                                Watch Video <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 2 -->
+                <div class="portfolio-item fade-in" data-category="education travel">
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                        <div class="relative cursor-pointer" onclick="window.open('https://youtu.be/o9I4kgiArhU', '_blank')">
+                            <img src="https://img.youtube.com/vi/o9I4kgiArhU/maxresdefault.jpg" alt="Educational Adventure" class="w-full h-48 object-cover rounded-t-2xl">
+                            <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-t-2xl">
+                                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-play text-white text-xl ml-1"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center space-x-2 mb-3">
+                                <span class="px-3 py-1 bg-forest-100 text-forest-700 text-xs font-medium rounded-full">Education</span>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-700 text-xs font-medium rounded-full">Travel</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-stone-800 mb-3">Survival Secrets: Must-Have Gear for Extreme Camping</h3>
+                            <p class="text-stone-600 text-sm mb-4">Join me, a seasoned zoologist, as I pack for an intense field research expedition! 🌲🦁  Discover the must-have gear that keeps me safe and efficient in the wild.</p>
+                            <a href="https://youtu.be/o9I4kgiArhU?si=sSPlczMgvUsb6a98" target="_blank" class="text-sage-600 hover:text-sage-700 font-medium text-sm">
+                                Watch Video <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 3 -->
+                <div class="portfolio-item fade-in" data-category="conservation">
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                        <div class="relative cursor-pointer" onclick="window.open('https://youtu.be/c_3uzFRss7I', '_blank')">
+                            <img src="https://img.youtube.com/vi/c_3uzFRss7I/maxresdefault.jpg" alt="Conservation Initiative" class="w-full h-48 object-cover rounded-t-2xl">
+                            <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-t-2xl">
+                                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-play text-white text-xl ml-1"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center space-x-2 mb-3">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">Conservation</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-stone-800 mb-3">Uncover the Mysteries of the Tapir Species</h3>
+                            <p class="text-stone-600 text-sm mb-4">Why care? Why does the life outside of ourselves matter? Watch this video and learn about the long existing and not well known species.. the tapir.  In this video we will learn all about this species. </p>
+                            <a href="https://youtu.be/c_3uzFRss7I?si=H9QubwIu0IzbAZKi" target="_blank" class="text-sage-600 hover:text-sage-700 font-medium text-sm">
+                                Watch Video <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 4 -->
+                <div class="portfolio-item fade-in" data-category="research education">
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                        <div class="relative cursor-pointer" onclick="window.open('https://youtu.be/MIKk0oV94Jo', '_blank')">
+                            <img src="https://img.youtube.com/vi/MIKk0oV94Jo/maxresdefault.jpg" alt="Field Research Study" class="w-full h-48 object-cover rounded-t-2xl">
+                            <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-t-2xl">
+                                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-play text-white text-xl ml-1"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center space-x-2 mb-3">
+                                <span class="px-3 py-1 bg-sage-100 text-sage-700 text-xs font-medium rounded-full">Research</span>
+                                <span class="px-3 py-1 bg-forest-100 text-forest-700 text-xs font-medium rounded-full">Education</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-stone-800 mb-3">Gibbon Genius Challenge 🦍 Who's the Brainiest Primate?</h3>
+                            <p class="text-stone-600 text-sm mb-4">Get ready for an epic battle of wits as these agile and intelligent gibbons put their problem-solving skills to the ultimate test in a series of ...</p>
+                            <a href="https://youtu.be/MIKk0oV94Jo?si=unzMPVczlmzffEpx" target="_blank" class="text-sage-600 hover:text-sage-700 font-medium text-sm">
+                                Watch Video <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 5 -->
+                <div class="portfolio-item fade-in" data-category="travel education">
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                        <div class="relative cursor-pointer" onclick="window.open('https://youtu.be/8oPH9rFobbI', '_blank')">
+                            <img src="https://img.youtube.com/vi/8oPH9rFobbI/maxresdefault.jpg" alt="Wildlife Travel Experience" class="w-full h-48 object-cover rounded-t-2xl">
+                            <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-t-2xl">
+                                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-play text-white text-xl ml-1"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center space-x-2 mb-3">
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-700 text-xs font-medium rounded-full">Travel</span>
+                                <span class="px-3 py-1 bg-forest-100 text-forest-700 text-xs font-medium rounded-full">Education</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-stone-800 mb-3">Elephant Spa Day 🐘 Pampering Nature's Gentle Giants</h3>
+                            <p class="text-stone-600 text-sm mb-4">Get ready for the most adorable and heartwarming video you'll ever see! Join us as we treat these majestic elephants to the ultimate spa experience.</p>
+                            <a href="https://youtu.be/8oPH9rFobbI?si=AM_XG9sJGQDtTPuL" target="_blank" class="text-sage-600 hover:text-sage-700 font-medium text-sm">
+                                Watch Video <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 6 -->
+                <div class="portfolio-item fade-in" data-category="conservation research">
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                        <div class="relative cursor-pointer" onclick="window.open('https://youtu.be/Oy_X934phlg', '_blank')">
+                            <img src="https://img.youtube.com/vi/Oy_X934phlg/maxresdefault.jpg" alt="Conservation Research" class="w-full h-48 object-cover rounded-t-2xl">
+                            <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-t-2xl">
+                                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-play text-white text-xl ml-1"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center space-x-2 mb-3">
+                                <span class="px-3 py-1 bg-terracotta-100 text-terracotta-700 text-xs font-medium rounded-full">Conservation</span>
+                                <span class="px-3 py-1 bg-sage-100 text-sage-700 text-xs font-medium rounded-full">Research</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-stone-800 mb-3">Guinea Pig Care 101 🐹 The Ultimate Guide</h3>
+                            <p class="text-stone-600 text-sm mb-4">Unlock the secrets to providing the perfect home and care for your adorable guinea pig companions with this comprehensive video guide.</p>
+                            <a href="https://youtu.be/Oy_X934phlg?si=3CaqIMIQxRbu5a-0" target="_blank" class="text-sage-600 hover:text-sage-700 font-medium text-sm">
+                                Watch Video <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Research Publications Section -->
+            <div class="mt-16 fade-in">
+                <div class="text-center mb-12">
+                    <h3 class="font-display text-3xl font-bold text-stone-800 mb-4">
+                        Research <span class="text-sage-600">Publications</span>
+                    </h3>
+                    <p class="text-lg text-stone-600 max-w-2xl mx-auto">
+                        Explore my academic research and scientific contributions to wildlife conservation and zoology.
+                    </p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-white rounded-2xl shadow-lg p-8 card-hover">
+                        <div class="flex items-start space-x-6">
+                            <div class="w-16 h-16 bg-sage-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-file-alt text-sage-600 text-2xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-2 mb-3">
+                                    <span class="px-3 py-1 bg-sage-100 text-sage-700 text-xs font-medium rounded-full">Research</span>
+                                    <span class="px-3 py-1 bg-terracotta-100 text-terracotta-700 text-xs font-medium rounded-full">Academic</span>
+                                </div>
+                                <h4 class="text-xl font-bold text-stone-800 mb-3">Academic Research Document</h4>
+                                <p class="text-stone-600 mb-4 leading-relaxed">
+                                    Access my comprehensive research documentation covering wildlife conservation methodologies, field study results, and scientific observations from various conservation projects.
+                                </p>
+                                <div class="flex flex-col sm:flex-row gap-4">
+                                    <a href="https://docs.google.com/document/d/158asAbH3aIi96QvQmXnpwFWu4OXK6XFPALkEhI2KEq4/edit?tab=t.0" target="_blank" class="inline-flex items-center px-6 py-3 bg-sage-600 hover:bg-sage-700 text-white rounded-lg font-medium transition-colors">
+                                        <i class="fas fa-external-link-alt mr-2"></i>
+                                        View Research Document
+                                    </a>
+                                    <button onclick="copyResearchLink()" class="inline-flex items-center px-6 py-3 bg-stone-200 hover:bg-stone-300 text-stone-700 rounded-lg font-medium transition-colors">
+                                        <i class="fas fa-copy mr-2"></i>
+                                        Copy Link
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding py-12 sm:py-16 md:py-20 bg-sage-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8 sm:mb-12 md:mb-16 fade-in">
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-stone-800 mb-4 sm:mb-6">
+                    Get In <span class="text-sage-600">Touch</span>
+                </h2>
+                <p class="mobile-text-xl text-lg sm:text-xl text-stone-600 max-w-3xl mx-auto px-4">
+                    Ready to start your conservation journey? Let's discuss how I can help you achieve your goals.
+                </p>
+            </div>
+            
+            <div class="contact-grid grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 max-w-6xl mx-auto">
+                <!-- Contact Form -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 fade-in">
+                    <h3 class="text-2xl font-bold text-stone-800 mb-6">Send Me a Message</h3>
+                    
+                    <form id="contact-form" action="mailto:cassandra@casanimaladventures.com" method="post" enctype="text/plain">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-stone-700 mb-2 font-medium">Your Name</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent transition-all" placeholder="John Doe" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-stone-700 mb-2 font-medium">Email Address</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent transition-all" placeholder="john@example.com" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="interest" class="block text-stone-700 mb-2 font-medium">I'm Interested In</label>
+                            <select id="interest" name="interest" class="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent transition-all">
+                                <option value="" selected disabled>Select your interest</option>
+                                <option value="wildlife-coaching">Wildlife Coaching</option>
+                                <option value="internship">Internship Opportunities</option>
+                                <option value="study-abroad">Study Abroad Programs</option>
+                                <option value="wildlife-trips">Wildlife Trips</option>
+                                <option value="wild-patch">Wild Patch Challenge</option>
+                                <option value="scholarship">Scholarship Information</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="experience" class="block text-stone-700 mb-2 font-medium">Experience Level</label>
+                            <select id="experience" name="experience" class="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent transition-all">
+                                <option value="" selected disabled>Select your experience level</option>
+                                <option value="beginner">Beginner (No prior experience)</option>
+                                <option value="some-experience">Some Experience (1-2 years)</option>
+                                <option value="intermediate">Intermediate (3-5 years)</option>
+                                <option value="advanced">Advanced (5+ years)</option>
+                                <option value="professional">Professional</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="message" class="block text-stone-700 mb-2 font-medium">Your Message</label>
+                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent transition-all" placeholder="Tell me about your goals, interests, and how I can help you..."></textarea>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="interview" name="interview" class="mr-3 w-4 h-4 text-sage-600 border-stone-300 rounded focus:ring-sage-500">
+                                <span class="text-stone-700">I would like to schedule an interview/consultation call</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="w-full btn-primary text-white py-3 rounded-lg font-semibold">
+                            <i class="fas fa-paper-plane mr-2"></i>Send Message
+                        </button>
+                    </form>
+                </div>
+                             <!-- Contact Information -->
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold text-stone-800 mb-6">Get In Touch</h3>
+                    
+                    <!-- Compact Map -->
+                    <div class="mb-6">
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                            <div class="p-3 bg-sage-600">
+                                <h4 class="font-semibold text-white flex items-center">
+                                    <i class="fas fa-map-marked-alt mr-2"></i>
+                                    Miami, Ohio
+                                </h4>
+                            </div>
+                            <div class="relative h-48">
+                                <iframe 
+                                    id="google-map"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d196281.1471761857!2d-84.87285!3d39.5097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x884073d2b1b0b3a5%3A0x2b8e0b0b0b0b0b0b!2sMiami%20University%2C%20Oxford%2C%20OH!5e0!3m2!1sen!2sus!4v1234567890123&gestureHandling=cooperative" 
+                                    width="100%" 
+                                    height="100%" 
+                                    style="border:0;" 
+                                    allowfullscreen="" 
+                                    loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                                <div id="map-overlay" class="absolute inset-0 bg-black/20 cursor-pointer flex items-center justify-center opacity-100 hover:opacity-80 transition-opacity">
+                                    <div class="bg-white/90 text-stone-800 px-4 py-2 rounded-lg text-sm font-medium shadow-lg">
+                                        <i class="fas fa-mouse-pointer mr-2"></i>Click to interact with map
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Details -->
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-center space-x-3 p-3 bg-white rounded-lg shadow-sm">
+                            <div class="w-10 h-10 bg-sage-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-sage-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-stone-800">Location</h4>
+                                <p class="text-stone-600 text-sm">Available worldwide • Based in Miami, Ohio</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-3 p-3 bg-white rounded-lg shadow-sm">
+                            <div class="w-10 h-10 bg-sage-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-envelope text-sage-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-stone-800">Email</h4>
+                                <a href="mailto:cassandra@casanimaladventures.com" class="text-sage-600 hover:text-sage-700 text-sm">
+                                    cassandra@casanimaladventures.com
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-3 p-3 bg-white rounded-lg shadow-sm">
+                            <div class="w-10 h-10 bg-sage-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-calendar-alt text-sage-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-stone-800">Schedule a Meeting</h4>
+                                <p class="text-stone-600 text-sm mb-2">Ready to discuss internships or trips?</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-3 p-3 bg-white rounded-lg shadow-sm">
+                            <div class="w-10 h-10 bg-sage-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-clock text-sage-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-stone-800">Response Time</h4>
+                                <p class="text-stone-600 text-sm">I typically respond within 24-48 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Media -->
+                    <div class="bg-white rounded-lg p-4 shadow-sm">
+                        <h4 class="font-semibold text-stone-800 mb-3">Follow My Adventures</h4>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://instagram.com/casanimaladventures" target="_blank" class="w-10 h-10 bg-gradient-to-br from-pink-500 to-orange-500 text-white rounded-full flex items-center justify-center hover:scale-105 transition-transform">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://instagram.com/cassandracdray" target="_blank" class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 text-white rounded-full flex items-center justify-center hover:scale-105 transition-transform">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@casanimaladventures" target="_blank" class="w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center hover:scale-105 transition-transform">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://www.facebook.com/profile.php?id=61567946146382" target="_blank" class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:scale-105 transition-transform">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="https://www.tiktok.com/@casanimaladventures" target="_blank" class="w-10 h-10 bg-gray-800 text-white rounded-full flex items-center justify-center hover:scale-105 transition-transform">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                            <a href="https://wa.me/13303383270" target="_blank" class="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center hover:scale-105 transition-transform">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://linktr.ee/casanimaladventures?utm_source=linktree_profile_share&ltsid=a9b9f2de-1f16-4535-b291-100bbaee9013" target="_blank" class="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center hover:scale-105 transition-transform">
+                                <i class="fas fa-link"></i>
+                            </a>
+                            <a href="mailto:cassandra@casanimaladventures.com" class="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center hover:scale-105 transition-transform">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+
+    <!-- Works Cited Section -->
+    <section class="py-16 bg-stone-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-4xl font-bold text-stone-800 mb-4">Works Cited</h2>
+                    <p class="text-stone-600 text-lg">Academic references supporting our conservation and wildlife education content</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-lg p-8 fade-in">
+                    <div class="space-y-6 text-stone-700">
+                        <div class="border-l-4 border-sage-500 pl-6">
+                            <p class="text-sm leading-relaxed">
+                                Barnosky, A. D., Matzke, N., Tomiya, S., Wogan, G. O., Swartz, B., Quental, T. B., ... & Ferrer, E. A. (2011). Has the Earth's sixth mass extinction already arrived? <em>Nature</em>, 471(7336), 51-57.
+                            </p>
+                        </div>
+                        
+                        <div class="border-l-4 border-sage-500 pl-6">
+                            <p class="text-sm leading-relaxed">
+                                Ceballos, G., Ehrlich, P. R., & Dirzo, R. (2017). Biological annihilation via the ongoing sixth mass extinction signaled by vertebrate population losses and declines. <em>Proceedings of the National Academy of Sciences</em>, 114(30), E6089-E6096.
+                            </p>
+                        </div>
+                        
+                        <div class="border-l-4 border-sage-500 pl-6">
+                            <p class="text-sm leading-relaxed">
+                                Dirzo, R., Young, H. S., Galetti, M., Ceballos, G., Isaac, N. J., & Collen, B. (2014). Defaunation in the Anthropocene. <em>Science</em>, 345(6195), 401-406.
+                            </p>
+                        </div>
+                        
+                        <div class="border-l-4 border-sage-500 pl-6">
+                            <p class="text-sm leading-relaxed">
+                                Estrada, A., Garber, P. A., Rylands, A. B., Roos, C., Fernandez-Duque, E., Di Fiore, A., ... & Rovero, F. (2017). Impending extinction crisis of the world's primates: Why primates matter. <em>Science Advances</em>, 3(1), e1600946.
+                            </p>
+                        </div>
+                        
+                        <div class="border-l-4 border-sage-500 pl-6">
+                            <p class="text-sm leading-relaxed">
+                                Pimm, S. L., Jenkins, C. N., Abell, R., Brooks, T. M., Gittleman, J. L., Joppa, L. N., ... & Sexton, J. O. (2014). The biodiversity of species and their rates of extinction, distribution, and protection. <em>Science</em>, 344(6187), 1246752.
+                            </p>
+                        </div>
+                        
+                        <div class="border-l-4 border-sage-500 pl-6">
+                            <p class="text-sm leading-relaxed">
+                                Ripple, W. J., Wolf, C., Newsome, T. M., Galetti, M., Alamgir, M., Crist, E., ... & 15,364 scientist signatories from 184 countries. (2017). World scientists' warning to humanity: A second notice. <em>BioScience</em>, 67(12), 1026-1028.
+                            </p>
+                        </div>
+                        
+                        <div class="border-l-4 border-sage-500 pl-6">
+                            <p class="text-sm leading-relaxed">
+                                WWF. (2020). <em>Living Planet Report 2020 - Bending the curve of biodiversity loss</em>. Almond, R.E.A., Grooten M. and Petersen, T. (Eds). WWF, Gland, Switzerland.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 p-4 bg-sage-50 rounded-lg">
+                        <p class="text-sm text-stone-600 italic">
+                            These references support the scientific foundation of our conservation education programs and highlight the urgent need for wildlife protection and ethical travel practices.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-800 text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="footer-grid grid md:grid-cols-4 gap-8 mb-12">
+                <!-- Brand -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-sage-500 to-forest-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-leaf text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold">Cassandra</h3>
+                            <p class="text-stone-300">Travel Zoologist & Wildlife Guide</p>
+                        </div>
+                    </div>
+                    <p class="text-stone-300 mb-6 max-w-md">
+                        Connecting people with nature through ethical wildlife adventures and conservation education. Join me in making a difference for our planet's future.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="https://instagram.com/casanimaladventures" target="_blank" class="w-10 h-10 bg-stone-700 hover:bg-sage-600 rounded-full flex items-center justify-center transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://instagram.com/cassandracdray" target="_blank" class="w-10 h-10 bg-stone-700 hover:bg-sage-600 rounded-full flex items-center justify-center transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@casanimaladventures" target="_blank" class="w-10 h-10 bg-stone-700 hover:bg-sage-600 rounded-full flex items-center justify-center transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61567946146382" target="_blank" class="w-10 h-10 bg-stone-700 hover:bg-sage-600 rounded-full flex items-center justify-center transition-colors">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@casanimaladventures" target="_blank" class="w-10 h-10 bg-stone-700 hover:bg-sage-600 rounded-full flex items-center justify-center transition-colors">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://wa.me/13303383270" target="_blank" class="w-10 h-10 bg-stone-700 hover:bg-sage-600 rounded-full flex items-center justify-center transition-colors">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://linktr.ee/casanimaladventures?utm_source=linktree_profile_share&ltsid=a9b9f2de-1f16-4535-b291-100bbaee9013" target="_blank" class="w-10 h-10 bg-stone-700 hover:bg-sage-600 rounded-full flex items-center justify-center transition-colors">
+                            <i class="fas fa-link"></i>
+                        </a>
+                        <a href="mailto:cassandra@casanimaladventures.com" class="w-10 h-10 bg-stone-700 hover:bg-sage-600 rounded-full flex items-center justify-center transition-colors">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-stone-300 hover:text-sage-400 transition-colors">About Me</a></li>
+                        <li><a href="#services" class="text-stone-300 hover:text-sage-400 transition-colors">Services</a></li>
+                        <li><a href="#wild-patch" class="text-stone-300 hover:text-sage-400 transition-colors">Wild Patch Challenge</a></li>
+                        <li><a href="#eco-travel" class="text-stone-300 hover:text-sage-400 transition-colors">Eco Travel</a></li>
+                        <li><a href="#portfolio" class="text-stone-300 hover:text-sage-400 transition-colors">Portfolio</a></li>
+                        <li><a href="#contact" class="text-stone-300 hover:text-sage-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Get In Touch</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-sage-400"></i>
+                            <span class="text-stone-300">cassandra@casanimaladventures.com</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-map-marker-alt text-sage-400"></i>
+                            <span class="text-stone-300">Miami, Ohio</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-globe text-sage-400"></i>
+                            <span class="text-stone-300">Worldwide Adventures</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="border-t border-stone-700 pt-8 text-center">
+                <p class="text-stone-400">
+                    © 2024 thewildpatchchallenge. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Portfolio filtering
+        const filterButtons = document.querySelectorAll('.portfolio-filter');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        if (filterButtons.length > 0) {
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.getAttribute('data-filter');
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.classList.remove('bg-sage-500', 'text-white');
+                        btn.classList.add('bg-stone-200', 'text-stone-700');
+                    });
+                    button.classList.add('active');
+                    button.classList.remove('bg-stone-200', 'text-stone-700');
+                    button.classList.add('bg-sage-500', 'text-white');
+                    
+                    // Filter portfolio items
+                    portfolioItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category').includes(filter)) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+        
+        // Contact form handling
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                
+                // Here you would typically send the data to your server
+                console.log('Form submitted:', data);
+                
+                // Show success message (you can customize this)
+                alert('Thank you for your message! I\'ll get back to you within 24-48 hours.');
+                
+                // Reset form
+                this.reset();
+            });
+        }
+        
+        // Map scroll zoom functionality
+        const mapIframe = document.getElementById('google-map');
+        const mapOverlay = document.getElementById('map-overlay');
+        
+        if (mapIframe && mapOverlay) {
+            let mapActive = false;
+            
+            // Enable map interaction on click
+            mapOverlay.addEventListener('click', function() {
+                mapActive = true;
+                mapOverlay.style.opacity = '0';
+                mapOverlay.style.pointerEvents = 'none';
+                
+                // Show a brief message
+                const hint = mapOverlay.querySelector('div');
+                hint.innerHTML = '<i class="fas fa-check mr-2"></i>Map activated! Scroll to zoom';
+                mapOverlay.style.opacity = '1';
+                
+                setTimeout(() => {
+                    mapOverlay.style.opacity = '0';
+                }, 1500);
+            });
+            
+            // Reset map interaction when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!mapIframe.parentElement.contains(e.target) && mapActive) {
+                    mapActive = false;
+                    mapOverlay.style.opacity = '1';
+                    mapOverlay.style.pointerEvents = 'auto';
+                    const hint = mapOverlay.querySelector('div');
+                    hint.innerHTML = '<i class="fas fa-mouse-pointer mr-2"></i>Click to interact with map';
+                }
+            });
+            
+            // Handle scroll wheel events on the map container
+            const mapContainer = mapIframe.parentElement;
+            mapContainer.addEventListener('wheel', function(e) {
+                if (!mapActive) {
+                    e.preventDefault();
+                    
+                    // Show hint to click for interaction
+                    const hint = mapOverlay.querySelector('div');
+                    hint.innerHTML = '<i class="fas fa-mouse-pointer mr-2"></i>Click first to enable scrolling';
+                    mapOverlay.style.opacity = '1';
+                    
+                    // Reset hint after 2 seconds
+                    setTimeout(() => {
+                        if (!mapActive) {
+                            hint.innerHTML = '<i class="fas fa-mouse-pointer mr-2"></i>Click to interact with map';
+                        }
+                    }, 2000);
+                }
+            });
+        }
+        
+        // Copy research link function
+        function copyResearchLink() {
+            const researchUrl = 'https://docs.google.com/document/d/158asAbH3aIi96QvQmXnpwFWu4OXK6XFPALkEhI2KEq4/edit?tab=t.0';
+            
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(researchUrl).then(() => {
+                    // Show success message
+                    const button = event.target.closest('button');
+                    const originalText = button.innerHTML;
+                    button.innerHTML = '<i class="fas fa-check mr-2"></i>Copied!';
+                    button.classList.add('bg-green-200', 'text-green-700');
+                    button.classList.remove('bg-stone-200', 'text-stone-700');
+                    
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                        button.classList.remove('bg-green-200', 'text-green-700');
+                        button.classList.add('bg-stone-200', 'text-stone-700');
+                    }, 2000);
+                }).catch(() => {
+                    // Fallback for older browsers
+                    fallbackCopyTextToClipboard(researchUrl);
+                });
+            } else {
+                // Fallback for older browsers
+                fallbackCopyTextToClipboard(researchUrl);
+            }
+        }
+        
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.top = '0';
+            textArea.style.left = '0';
+            textArea.style.position = 'fixed';
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                alert('Research link copied to clipboard!');
+            } catch (err) {
+                alert('Unable to copy link. Please copy manually: ' + text);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+        
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-white/98');
+                nav.classList.remove('bg-white/95');
+            } else {
+                nav.classList.add('bg-white/95');
+                nav.classList.remove('bg-white/98');
+            }
+        });
+    </script>
+</body>
+</html>
+         
