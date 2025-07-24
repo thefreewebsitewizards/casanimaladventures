@@ -123,113 +123,383 @@
         .border-sage-200 { border-color: var(--sage-200); }
         .border-terracotta-200 { border-color: var(--terracotta-200); }
         
-        /* Enhanced mobile menu styling */
+        /* MOBILE-FIRST COMPLETE REWRITE */
+        
+        /* Base mobile styles (mobile-first approach) */
+        * {
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* NAVIGATION - MOBILE FIRST */
         @media (max-width: 768px) {
-            .hero-bg {
-                background-attachment: scroll;
-            }
-            
-            /* Mobile navigation improvements */
-            #mobile-menu {
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 9999;
                 background: rgba(255, 255, 255, 0.98);
                 backdrop-filter: blur(10px);
-                border-radius: 0 0 1rem 1rem;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+                box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+                height: auto;
+                min-height: 60px;
             }
             
-            /* Mobile hero text scaling */
+            nav .container {
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+                padding: 8px 16px;
+            }
+            
+            nav .flex.justify-between.items-center {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                min-height: 60px;
+                padding: 8px 0;
+                flex-wrap: nowrap;
+            }
+            
+            /* Logo section - ULTRA FLEXIBLE */
+            nav .flex.items-center.space-x-3 {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                flex: 1;
+                min-width: 0;
+                max-width: calc(100vw - 80px);
+                overflow: hidden;
+            }
+            
+            /* Logo - PROPORTIONAL */
+            nav .w-12.h-12 {
+                width: 48px !important;
+                height: 48px !important;
+                flex-shrink: 0;
+                border-radius: 50%;
+            }
+            
+            /* Title - FULLY RESPONSIVE */
+            nav .text-xl.font-bold {
+                font-size: clamp(14px, 4vw, 18px) !important;
+                line-height: 1.2 !important;
+                font-weight: 700 !important;
+                color: #1c1917 !important;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                flex: 1;
+                min-width: 0;
+            }
+            
+            /* Hide subtitle completely on mobile */
+            nav .text-sm.text-sage-600,
+            nav p {
+                display: none !important;
+            }
+            
+            /* HAMBURGER - ULTRA VISIBLE */
+            #mobile-menu-btn {
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                width: 60px !important;
+                height: 60px !important;
+                background: linear-gradient(135deg, #1f2937, #374151) !important;
+                color: white !important;
+                border: 2px solid #4b5563 !important;
+                border-radius: 15px !important;
+                flex-shrink: 0;
+                margin-left: 12px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+                transition: all 0.3s ease;
+                position: relative;
+                z-index: 10000;
+            }
+            
+            #mobile-menu-btn:hover,
+            #mobile-menu-btn:focus {
+                background: linear-gradient(135deg, #111827, #1f2937) !important;
+                transform: scale(1.05);
+                box-shadow: 0 6px 20px rgba(0,0,0,0.4) !important;
+            }
+            
+            #mobile-menu-btn i {
+                font-size: 24px !important;
+                color: white !important;
+                font-weight: 900;
+            }
+            
+            /* Hide desktop menu */
+            nav .hidden.md\:flex {
+                display: none !important;
+            }
+            
+            /* Mobile menu - FULL WIDTH */
+            #mobile-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                border-top: 3px solid #e5e7eb;
+                padding: 24px 16px;
+                z-index: 9998;
+                width: 100vw;
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
+            }
+            
+            #mobile-menu a {
+                display: block;
+                padding: 20px 16px;
+                font-size: 20px;
+                font-weight: 600;
+                color: #374151;
+                text-decoration: none;
+                border-bottom: 2px solid #f3f4f6;
+                transition: all 0.3s;
+                border-radius: 8px;
+                margin-bottom: 8px;
+            }
+            
+            #mobile-menu a:hover {
+                background: #f9fafb;
+                color: #059669;
+                transform: translateX(8px);
+            }
+            
+            #mobile-menu a:last-child {
+                border-bottom: none;
+                background: linear-gradient(135deg, #059669, #047857);
+                color: white;
+                text-align: center;
+                border-radius: 15px;
+                margin-top: 20px;
+                font-weight: 700;
+                box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
+            }
+            
+            /* HERO SECTION - MOBILE OPTIMIZED */
+            #home {
+                margin-top: 80px;
+                min-height: calc(100vh - 80px);
+                padding: 32px 16px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                overflow: hidden;
+            }
+            
+            .hero-bg {
+                background-attachment: scroll;
+                background-size: cover;
+                background-position: center;
+                width: 100%;
+            }
+            
+            /* Hero content - ULTRA RESPONSIVE */
             .hero-title {
-                font-size: 2.5rem !important;
-                line-height: 1.2;
+                font-size: clamp(2rem, 8vw, 3rem) !important;
+                line-height: 1.1 !important;
+                margin-bottom: 24px !important;
+                text-align: center;
+                font-weight: 800;
+                word-wrap: break-word;
             }
             
             .hero-subtitle {
-                font-size: 1.125rem !important;
+                font-size: clamp(1rem, 4vw, 1.25rem) !important;
+                line-height: 1.5 !important;
+                margin-bottom: 32px !important;
+                text-align: center;
+                padding: 0 16px;
+                max-width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+                word-wrap: break-word;
             }
             
-            /* Mobile button stacking */
+            /* Hero buttons - STACK PROPERLY */
             .hero-buttons {
-                flex-direction: column;
-                gap: 1rem;
-                width: 100%;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 16px !important;
+                width: 100% !important;
+                max-width: 350px !important;
+                margin: 0 auto 32px auto !important;
+                padding: 0 16px;
             }
             
             .hero-buttons a {
-                width: 100%;
-                text-align: center;
+                width: 100% !important;
+                text-align: center !important;
+                padding: 18px 24px !important;
+                font-size: clamp(14px, 4vw, 16px) !important;
+                font-weight: 600 !important;
+                border-radius: 50px !important;
+                transition: all 0.3s !important;
+                display: block !important;
+                box-sizing: border-box;
             }
             
-            /* Mobile stats grid */
+            /* Stats - RESPONSIVE GRID */
             .stats-grid {
+                display: grid !important;
                 grid-template-columns: repeat(2, 1fr) !important;
-                gap: 1rem;
+                gap: 20px !important;
+                margin-top: 40px !important;
+                padding: 0 16px !important;
+                max-width: 100% !important;
+                width: 100%;
             }
             
-            /* Mobile services cards */
-            .services-grid {
-                grid-template-columns: 1fr !important;
-                gap: 1.5rem;
+            /* ALL SECTIONS - MOBILE FIRST */
+            section {
+                padding: 48px 16px !important;
+                width: 100% !important;
+                overflow-x: hidden !important;
+                box-sizing: border-box;
             }
             
-            /* Mobile portfolio grid */
-            .portfolio-grid {
-                grid-template-columns: 1fr !important;
-                gap: 1.5rem;
+            .container {
+                max-width: 100% !important;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                box-sizing: border-box;
             }
             
-            /* Mobile eco-travel grid */
-            .eco-travel-grid {
-                grid-template-columns: 1fr !important;
-                gap: 1.5rem;
-            }
-            
-            /* Mobile contact form */
-            .contact-grid {
-                grid-template-columns: 1fr !important;
-                gap: 2rem;
-            }
-            
-            /* Mobile footer */
+            /* ALL GRIDS - SINGLE COLUMN */
+            .grid,
+            .grid.md\:grid-cols-2,
+            .grid.md\:grid-cols-3,
+            .grid.md\:grid-cols-4,
+            .services-grid,
+            .portfolio-grid,
+            .contact-grid,
             .footer-grid {
+                display: grid !important;
                 grid-template-columns: 1fr !important;
-                gap: 2rem;
+                gap: 24px !important;
+                width: 100% !important;
+            }
+            
+            /* TYPOGRAPHY - FULLY RESPONSIVE */
+            h1 {
+                font-size: clamp(1.75rem, 6vw, 2.5rem) !important;
+                line-height: 1.2 !important;
+                margin-bottom: 16px !important;
+                word-wrap: break-word;
+            }
+            
+            h2 {
+                font-size: clamp(1.5rem, 5vw, 2rem) !important;
+                line-height: 1.3 !important;
                 text-align: center;
+                margin-bottom: 24px !important;
+                word-wrap: break-word;
             }
             
-            /* Mobile padding adjustments */
-            .section-padding {
-                padding: 3rem 0 !important;
+            h3 {
+                font-size: clamp(1.25rem, 4vw, 1.5rem) !important;
+                line-height: 1.4 !important;
+                margin-bottom: 16px !important;
+                word-wrap: break-word;
             }
             
-            /* Mobile text sizing */
-            .mobile-text-lg {
-                font-size: 1.125rem;
+            p {
+                font-size: clamp(0.875rem, 3.5vw, 1rem) !important;
+                line-height: 1.6 !important;
+                margin-bottom: 16px !important;
+                word-wrap: break-word;
             }
             
-            .mobile-text-xl {
-                font-size: 1.25rem;
+            /* CARDS - RESPONSIVE */
+            .bg-white {
+                padding: 24px !important;
+                margin-bottom: 20px !important;
+                border-radius: 16px !important;
+                width: 100% !important;
+                box-sizing: border-box;
             }
             
-            /* Mobile spacing */
-            .mobile-mb-8 {
-                margin-bottom: 2rem;
+            /* IMAGES - FULLY RESPONSIVE */
+            img {
+                max-width: 100% !important;
+                height: auto !important;
+                border-radius: 12px;
+                display: block;
             }
             
-            .mobile-mb-12 {
-                margin-bottom: 3rem;
+            /* BUTTONS - CONSISTENT */
+            .btn-primary,
+            a[class*="btn"] {
+                padding: 16px 32px !important;
+                font-size: clamp(14px, 3.5vw, 16px) !important;
+                font-weight: 600 !important;
+                border-radius: 50px !important;
+                text-align: center !important;
+                display: block !important;
+                width: 100% !important;
+                max-width: 300px;
+                margin: 0 auto;
+                box-sizing: border-box;
+            }
+            
+            /* SOCIAL LINKS */
+            .flex.space-x-4 {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 12px !important;
+                justify-content: center !important;
+            }
+            
+            .flex.space-x-4 a {
+                width: 48px !important;
+                height: 48px !important;
+                font-size: 20px !important;
+                flex-shrink: 0;
             }
         }
         
-        /* Tablet responsive adjustments */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .tablet-grid-2 {
-                grid-template-columns: repeat(2, 1fr);
+        /* TABLET ADJUSTMENTS */
+        @media (min-width: 769px) {
+            nav .text-xl.font-bold {
+                font-size: 20px !important;
             }
             
-            .tablet-text-4xl {
-                font-size: 2.25rem;
+            .hero-title {
+                font-size: 3.5rem !important;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr) !important;
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .grid.md\:grid-cols-2 {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
             }
         }
+        
+
     </style>
 </head>
 <body class="bg-stone-50">
@@ -237,18 +507,19 @@
     <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 rounded-full overflow-hidden">
+                <!-- Logo and Text Section -->
+                <div class="flex items-center space-x-3 flex-shrink min-w-0">
+                    <div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
                         <img src="images/caslogo.jpg" alt="Logo" class="w-full h-full object-cover">
                     </div>
-                    <div>
-                        <h1 class="text-xl font-bold text-stone-800">thewildpatchchallenge</h1>
-                        <p class="text-sm text-sage-600 font-medium">Travel Zoologist & Wildlife Guide</p>
+                    <div class="min-w-0 flex-shrink">
+                        <h1 class="text-xl font-bold text-stone-800 truncate leading-tight">thewildpatchchallenge</h1>
+                        <p class="text-sm text-sage-600 font-medium hidden sm:block truncate">Travel Zoologist & Wildlife Guide</p>
                     </div>
                 </div>
                 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8">
+                <div class="hidden md:flex space-x-8 flex-shrink-0">
                     <a href="#home" class="text-stone-700 hover:text-sage-600 font-medium transition-colors">Home</a>
                     <a href="#about" class="text-stone-700 hover:text-sage-600 font-medium transition-colors">About</a>
                     <a href="#services" class="text-stone-700 hover:text-sage-600 font-medium transition-colors">Services</a>
@@ -258,9 +529,9 @@
                     <a href="#contact" class="btn-primary text-white px-6 py-2 rounded-full font-medium">Contact</a>
                 </div>
                 
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-stone-700 hover:text-sage-600">
-                    <i class="fas fa-bars text-xl"></i>
+                <!-- Mobile Menu Button - FORCED VISIBLE -->
+                <button id="mobile-menu-btn" class="md:hidden" type="button" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
                 </button>
             </div>
             
