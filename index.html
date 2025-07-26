@@ -211,8 +211,8 @@
                 display: flex !important;
                 align-items: center;
                 justify-content: center;
-                width: 60px !important;
-                height: 60px !important;
+                width: 40px !important;
+                height: 40px !important;
                 background: linear-gradient(135deg, #1f2937, #374151) !important;
                 color: white !important;
                 border: 2px solid #4b5563 !important;
@@ -473,6 +473,49 @@
             }
         }
         
+        /* Header text responsiveness */
+        @media (max-width: 640px) {
+            .nav-container .flex.items-center.space-x-3 h1 {
+                font-size: 0.875rem !important; /* 14px */
+                line-height: 1.2;
+            }
+            
+            .nav-container .flex.items-center.space-x-3 p {
+                font-size: 0.75rem !important; /* 12px */
+                line-height: 1.2;
+            }
+            
+            .nav-container .flex.items-center.space-x-3 {
+                gap: 0.5rem !important; /* Reduce spacing on mobile */
+            }
+        }
+        
+        @media (min-width: 641px) and (max-width: 768px) {
+            .nav-container .flex.items-center.space-x-3 h1 {
+                font-size: 1rem !important; /* 16px */
+            }
+            
+            .nav-container .flex.items-center.space-x-3 p {
+                font-size: 0.875rem !important; /* 14px */
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .nav-container .flex.items-center.space-x-3 h1 {
+                font-size: 1.25rem !important; /* 20px */
+            }
+            
+            .nav-container .flex.items-center.space-x-3 p {
+                font-size: 1rem !important; /* 16px */
+            }
+        }
+        
+        /* Ensure text doesn't overflow */
+        .nav-container .flex.items-center.space-x-3 div:last-child {
+            overflow: hidden;
+            max-width: calc(100vw - 200px); /* Adjust based on your layout */
+        }
+        
         /* NAVIGATION - DESKTOP ALIGNMENT FIX */
         @media (min-width: 769px) {
             nav .flex.justify-between.items-center {
@@ -725,14 +768,16 @@
 <body class="bg-stone-50">
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300">
-        <div class="container mx-auto px-4">
+        <div class="nav-container container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
           <!-- Logo and Text Section -->
                 <div class="flex items-center space-x-3 flex-shrink min-w-0">
                     <div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
                         <img src="images/caslogo.jpg" alt="Logo" class="w-full h-full object-cover">
                     </div>
-                   
+                    <div class="flex flex-row items-center min-w-0"> <!-- Changed from flex-col to flex-row and added items-center -->
+                        <h1 class="text-lg md:text-xl lg:text-2xl font-bold text-stone-800 leading-tight truncate mr-2">thewildpatchchallenge</h1>
+                    </div>
                 </div>
                 
                 <!-- Desktop Menu -->
