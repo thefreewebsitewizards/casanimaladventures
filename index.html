@@ -182,17 +182,41 @@
         
         /* MOBILE-FIRST COMPLETE REWRITE */
         
-        /* Base mobile styles (mobile-first approach) */
+        /* Browser Compatibility Fix */
         * {
             box-sizing: border-box;
-        }
-        
-        html, body {
-            overflow-x: hidden;
-            width: 100%;
             margin: 0;
             padding: 0;
         }
+        
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 100%;
+        }
+        
+        /* Mobile Responsive Fix */
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            
+            .px-4 {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            
+            .mx-auto {
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+        }
+        
+        /* Base mobile styles (mobile-first approach) */
         
         /* NAVIGATION - MOBILE FIRST */
         @media (max-width: 768px) {
@@ -865,7 +889,7 @@
             <div class="flex items-center space-x-3">
                 <img src="images/caslogo.jpg" alt="Cas Animal Adventures Logo" class="h-8 sm:h-10 w-8 sm:w-10 rounded-full object-cover">
                 <div class="text-section">
-                    <div class="brand-name text-lg sm:text-xl font-bold text-white">thewildpatchchallenge</div>
+                    <div class="brand-name text-lg sm:text-xl font-bold text-white">casanimaladventures</div>
                     <div class="brand-subtitle text-xs sm:text-sm text-stone-300 hidden sm:block">Wildlife • Education • Conservation</div>
                 </div>
             </div>
@@ -873,10 +897,12 @@
             <!-- Desktop Menu -->
             <div class="hidden lg:flex items-center space-x-8">
                 <a href="#home" class="text-white hover:text-yellow-300 transition-colors font-medium">Home</a>
-                <a href="#about" class="text-white hover:text-yellow-300 transition-colors font-medium">About</a>
-                <a href="#services" class="text-white hover:text-yellow-300 transition-colors font-medium">Services</a>
                 <a href="#opportunities" class="text-white hover:text-yellow-300 transition-colors font-medium">Opportunities</a>
+                <a href="#services" class="text-white hover:text-yellow-300 transition-colors font-medium">Services</a>
+                <a href="#wild-patch" class="text-white hover:text-yellow-300 transition-colors font-medium">Challenge</a>
                 <a href="#portfolio" class="text-white hover:text-yellow-300 transition-colors font-medium">Portfolio</a>
+                <a href="#eco-travel" class="text-white hover:text-yellow-300 transition-colors font-medium">Eco Travel</a>
+                <a href="#about" class="text-white hover:text-yellow-300 transition-colors font-medium">About</a>
                 <a href="#contact" class="btn-jungle px-4 py-2 text-sm font-semibold">Contact</a>
             </div>
             
@@ -918,8 +944,8 @@
     
     <div class="container mx-auto px-6 lg:px-12 relative z-10">
         <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-5rem)]">
-            <!-- Left Content Column -->
-            <div class="fade-in space-y-8">
+            <!-- Left Content Column - Show second on mobile -->
+            <div class="fade-in space-y-8 order-2 lg:order-1">
                 <!-- Jungle Badge -->
                 <div class="inline-flex items-center bg-green-600/20 backdrop-blur-sm border border-green-400/30 rounded-full px-6 py-3 mb-4">
                     <span class="text-green-300 text-sm font-semibold tracking-wide">🌿 WILD ADVENTURES AWAIT</span>
@@ -969,8 +995,8 @@
                 </div>
             </div>
             
-            <!-- Right Photo Column -->
-            <div class="flex justify-center lg:justify-end fade-in">
+            <!-- Right Photo Column - Show first on mobile -->
+            <div class="flex justify-center lg:justify-end fade-in order-1 lg:order-2">
                 <div class="relative">
                     <!-- Jungle Frame Effect -->
                     <div class="absolute -inset-4 bg-gradient-to-br from-green-400/30 to-yellow-400/30 rounded-full blur-xl"></div>
@@ -992,14 +1018,6 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
-            <div class="text-green-300 text-sm mb-2">Explore the Wild</div>
-            <div class="w-6 h-10 border-2 border-green-300 rounded-full flex justify-center">
-                <div class="w-1 h-3 bg-green-300 rounded-full mt-2 animate-bounce"></div>
-            </div>
-        </div>
     </div>
 </section>
 
@@ -1019,9 +1037,8 @@
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             <!-- Opportunity 1 - Updated -->
             <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover fade-in">
-                <div class="h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
-                    <i class="fas fa-camera text-white text-4xl"></i>
-                    <span class="text-white ml-3 text-lg">Photo Coming Soon</span>
+                <div class="h-48 overflow-hidden">
+                    <img src="images/rica.jpg" alt="Costa Rica Conservation" class="w-full h-full object-cover">
                 </div>
                 <div class="p-6">
                     <h3 class="text-xl font-bold text-stone-800 mb-3">Costa Rica Conservation & Sustainability</h3>
@@ -1035,7 +1052,7 @@
                            class="flex-1 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full text-center transition-all">
                             <i class="fab fa-whatsapp mr-2"></i>Inquire
                         </a>
-                        <a href="https://tr.ee/QvmuAMyNNy" target="_blank" class="flex-1 bg-stone-200 hover:bg-stone-300 text-stone-700 px-4 py-2 rounded-full text-center transition-all">
+                        <a href="#contact" target="_blank" class="flex-1 bg-stone-200 hover:bg-stone-300 text-stone-700 px-4 py-2 rounded-full text-center transition-all">
                             Learn More
                         </a>
                     </div>
@@ -1044,9 +1061,8 @@
             
             <!-- Opportunity 2 - Updated -->
             <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover fade-in">
-                <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-                    <i class="fas fa-camera text-white text-4xl"></i>
-                    <span class="text-white ml-3 text-lg">Photo Coming Soon</span>
+                <div class="h-48 overflow-hidden">
+                    <img src="images/vets.jpg" alt="South Africa Wildlife Vet Trip" class="w-full h-full object-cover">
                 </div>
                 <div class="p-6">
                     <h3 class="text-xl font-bold text-stone-800 mb-3">South Africa Wildlife Vet Trip</h3>
@@ -1067,15 +1083,17 @@
                 </div>
             </div>
             
-            <!-- Linktree Integration -->
-            <div class="bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl shadow-lg p-6 card-hover fade-in flex flex-col justify-center items-center text-center">
-                <i class="fas fa-link text-purple-600 text-4xl mb-4"></i>
-                <h3 class="text-xl font-bold text-stone-800 mb-3">All Current Opportunities</h3>
-                <p class="text-stone-600 mb-6">View our complete list of available programs and adventures.</p>
-                <a href="https://linktr.ee/casanimaladventures" target="_blank" 
-                   class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-full font-semibold transition-all">
-                    <i class="fas fa-external-link-alt mr-2"></i>View All Opportunities
-                </a>
+            <!-- Linktree Integration - Centered -->
+            <div class="md:col-span-2 lg:col-span-3 max-w-md mx-auto w-full">
+                <div class="bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl shadow-lg p-6 card-hover fade-in flex flex-col justify-center items-center text-center">
+                    <i class="fas fa-link text-purple-600 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-stone-800 mb-3">All Current Opportunities</h3>
+                    <p class="text-stone-600 mb-6">View our complete list of available programs and adventures.</p>
+                    <a href="https://linktr.ee/casanimaladventures" target="_blank" 
+                       class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-full font-semibold transition-all">
+                        <i class="fas fa-external-link-alt mr-2"></i>View All Opportunities
+                    </a>
+                </div>
             </div>
         </div>
         
@@ -1083,10 +1101,10 @@
         <div class="bg-white rounded-2xl shadow-lg p-8 text-center fade-in">
             <h3 class="text-2xl font-bold text-stone-800 mb-4">🌱 Stay Updated on New Opportunities</h3>
             <p class="text-stone-600 mb-6">Be the first to know about new adventures, internships, and conservation programs.</p>
-            <div class="max-w-md mx-auto flex gap-3">
+            <div class="max-w-md mx-auto flex flex-col sm:flex-row gap-3">
                 <input type="email" placeholder="Enter your email" 
                        class="flex-1 px-4 py-3 border border-stone-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500">
-                <button class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-semibold transition-all">
+                <button class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-semibold transition-all whitespace-nowrap">
                     Subscribe
                 </button>
             </div>
@@ -1107,11 +1125,46 @@
                     </p>
                 </div>
                 
-                <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
                     <div class="fade-in">
-                        <img src="images/cas.jpg" 
+                        <img id="mainImage" src="images/cas.jpg" 
                              alt="Cassandra in the field" 
-                             class="rounded-2xl shadow-2xl w-full h-96 object-cover">
+                             class="rounded-2xl shadow-2xl w-full h-64 sm:h-80 md:h-96 object-cover mb-4 sm:mb-6 transition-all duration-500 ease-in-out">
+                        
+                        <!-- 5 Small Image Containers Below the Big Picture -->
+                        <div class="grid grid-cols-3 sm:grid-cols-5 gap-1 sm:gap-2 mb-3">
+                            <div class="group cursor-pointer" onclick="switchImages(0, 'images/1.jpg', 'Adventure 1')">
+                                <div class="relative overflow-hidden rounded shadow-sm hover:shadow-md transition-all duration-300 transform hover:scale-105 border border-transparent hover:border-sage-400">
+                                    <img id="thumb0" src="images/1.jpg" alt="Adventure 1" class="w-full h-6 sm:h-16 object-cover">
+                                </div>
+                            </div>
+                            
+                            <div class="group cursor-pointer" onclick="switchImages(1, 'images/2.jpg', 'Adventure 2')">
+                                <div class="relative overflow-hidden rounded shadow-sm hover:shadow-md transition-all duration-300 transform hover:scale-105 border border-transparent hover:border-sage-400">
+                                    <img id="thumb1" src="images/2.jpg" alt="Adventure 2" class="w-full h-6 sm:h-16 object-cover">
+                                </div>
+                            </div>
+                            
+                            <div class="group cursor-pointer" onclick="switchImages(2, 'images/3.jpg', 'Adventure 3')">
+                                <div class="relative overflow-hidden rounded shadow-sm hover:shadow-md transition-all duration-300 transform hover:scale-105 border border-transparent hover:border-sage-400">
+                                    <img id="thumb2" src="images/3.jpg" alt="Adventure 3" class="w-full h-6 sm:h-16 object-cover">
+                                </div>
+                            </div>
+                            
+                            <div class="group cursor-pointer" onclick="switchImages(3, 'images/4.jpg', 'Adventure 4')">
+                                <div class="relative overflow-hidden rounded shadow-sm hover:shadow-md transition-all duration-300 transform hover:scale-105 border border-transparent hover:border-sage-400">
+                                    <img id="thumb3" src="images/4.jpg" alt="Adventure 4" class="w-full h-6 sm:h-16 object-cover">
+                                </div>
+                            </div>
+                            
+                            <div class="group cursor-pointer" onclick="switchImages(4, 'images/5.jpg', 'Adventure 5')">
+                                <div class="relative overflow-hidden rounded shadow-sm hover:shadow-md transition-all duration-300 transform hover:scale-105 border border-transparent hover:border-sage-400">
+                                    <img id="thumb5" src="images/5.jpg" alt="Adventure 5" class="w-full h-6 sm:h-16 object-cover">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
                     </div>
                     
                     <div class="fade-in">
@@ -2034,7 +2087,7 @@
                             <img src="images/caslogo.jpg" alt="Logo" class="w-full h-full object-cover">
                         </div>
                         <div>
-                            <h3 class="text-2xl font-bold">thewildpatchchallenge</h3>
+                            <h3 class="text-2xl font-bold">casanimaladventures</h3>
                             <p class="text-stone-300">Travel Zoologist & Wildlife Guide</p>
                         </div>
                     </div>
@@ -2326,6 +2379,68 @@
             const navbar = document.getElementById('navbar');
             navbar.style.background = 'rgba(0, 0, 0, 0.3)';
             navbar.style.backdropFilter = 'blur(5px)';
+        });
+        
+        // Image gallery functionality
+        function changeMainImage(imageSrc, altText) {
+            const mainImage = document.getElementById('mainImage');
+            
+            // Add fade out effect
+            mainImage.style.opacity = '0';
+            mainImage.style.transform = 'translateY(-10px)';
+            
+            // Change image after fade out
+            setTimeout(() => {
+                mainImage.src = imageSrc;
+                mainImage.alt = altText;
+                
+                // Fade in with slide down effect
+                mainImage.style.opacity = '1';
+                mainImage.style.transform = 'translateY(0)';
+            }, 250);
+        }
+        
+        function switchImages(thumbIndex, newMainSrc, newMainAlt) {
+            const mainImage = document.getElementById('mainImage');
+            const thumbImage = document.getElementById('thumb' + thumbIndex);
+            
+            const currentMainSrc = mainImage.src;
+            const currentMainAlt = mainImage.alt;
+            
+            // Add touch feedback for mobile
+            if ('ontouchstart' in window) {
+                thumbImage.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    thumbImage.style.transform = '';
+                }, 150);
+            }
+            
+            mainImage.style.opacity = '0';
+            mainImage.style.transform = 'translateY(-10px)';
+            
+            setTimeout(() => {
+                mainImage.src = newMainSrc;
+                mainImage.alt = newMainAlt;
+                
+                thumbImage.src = currentMainSrc;
+                thumbImage.alt = currentMainAlt;
+                
+                mainImage.style.opacity = '1';
+                mainImage.style.transform = 'translateY(0)';
+            }, 250);
+        }
+        
+        // Add touch event handling for better mobile experience
+        document.addEventListener('DOMContentLoaded', function() {
+            if ('ontouchstart' in window) {
+                const thumbnails = document.querySelectorAll('[id^="thumb"]');
+                thumbnails.forEach(thumb => {
+                    thumb.style.cursor = 'pointer';
+                    thumb.addEventListener('touchstart', function(e) {
+                        e.preventDefault();
+                    });
+                });
+            }
         });
     </script>
 </body>
