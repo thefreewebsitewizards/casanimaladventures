@@ -1915,30 +1915,42 @@
                 <div class="fade-in">
                     <h3 class="text-2xl font-bold text-stone-800 mb-6">Get In Touch</h3>
                     
-                    <!-- Compact Map -->
+                    <!-- Enhanced Map Section -->
                     <div class="mb-6">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <div class="p-3 bg-sage-600">
+                        <div class="bg-white rounded-lg shadow-md">
+                            <div class="p-3 bg-sage-600 flex justify-between items-center">
                                 <h4 class="font-semibold text-white flex items-center">
                                     <i class="fas fa-map-marked-alt mr-2"></i>
                                     Miami, Ohio
                                 </h4>
+                                <!-- Zoom Controls -->
+                                <div class="flex space-x-2">
+                                    <button onclick="adjustMapZoom('in')" class="bg-white/20 hover:bg-white/30 text-white px-3 py-1 rounded text-sm transition-colors" title="Zoom In">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                    <button onclick="adjustMapZoom('out')" class="bg-white/20 hover:bg-white/30 text-white px-3 py-1 rounded text-sm transition-colors" title="Zoom Out">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button onclick="toggleFullscreen()" class="bg-white/20 hover:bg-white/30 text-white px-3 py-1 rounded text-sm transition-colors" title="Fullscreen">
+                                        <i class="fas fa-expand" id="fullscreen-icon"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="relative h-48">
+                            <div class="relative h-64 rounded-b-lg" id="map-container">
                                 <iframe 
                                     id="google-map"
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d196281.1471761857!2d-84.87285!3d39.5097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x884073d2b1b0b3a5%3A0x2b8e0b0b0b0b0b0b!2sMiami%20University%2C%20Oxford%2C%20OH!5e0!3m2!1sen!2sus!4v1234567890123&gestureHandling=cooperative" 
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d196281.1471761857!2d-84.87285!3d39.5097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x884073d2b1b0b3a5%3A0x2b8e0b0b0b0b0b0b!2sMiami%20University%2C%20Oxford%2C%20OH!5e0!3m2!1sen!2sus!4v1234567890123&gestureHandling=greedy" 
                                     width="100%" 
                                     height="100%" 
-                                    style="border:0;" 
+                                    style="border:0; border-radius: 0 0 0.5rem 0.5rem;" 
                                     allowfullscreen="" 
                                     loading="lazy" 
-                                    referrerpolicy="no-referrer-when-downgrade">
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    title="Interactive map of Miami, Ohio">
                                 </iframe>
-                                <div id="map-overlay" class="absolute inset-0 bg-black/20 cursor-pointer flex items-center justify-center opacity-100 hover:opacity-80 transition-opacity">
-                                    <div class="bg-white/90 text-stone-800 px-4 py-2 rounded-lg text-sm font-medium shadow-lg">
-                                        <i class="fas fa-mouse-pointer mr-2"></i>Click to interact with map
-                                    </div>
+                                <!-- Zoom indicator -->
+                                <div id="zoom-indicator" class="absolute top-2 right-2 bg-white/90 text-stone-800 px-2 py-1 rounded text-xs font-medium shadow-lg opacity-0 transition-opacity">
+                                    Zoom: <span id="zoom-level">13</span>
                                 </div>
                             </div>
                         </div>
@@ -2348,60 +2360,116 @@
             });
         }
         
-        // Map scroll zoom functionality
-        const mapIframe = document.getElementById('google-map');
-        const mapOverlay = document.getElementById('map-overlay');
+        // Enhanced Map functionality - No click required
+let currentZoom = 13;
+let isFullscreen = false;
+const mapIframe = document.getElementById('google-map');
+const mapContainer = document.getElementById('map-container');
+const zoomIndicator = document.getElementById('zoom-indicator');
+const zoomLevel = document.getElementById('zoom-level');
+const fullscreenIcon = document.getElementById('fullscreen-icon');
+
+// Zoom adjustment function
+function adjustMapZoom(direction) {
+    if (direction === 'in') {
+        currentZoom = Math.min(currentZoom + 2, 20);
+    } else {
+        currentZoom = Math.max(currentZoom - 2, 1);
+    }
+    updateMapZoom();
+    showZoomIndicator();
+}
+
+// Update map with new zoom level
+function updateMapZoom() {
+    const baseUrl = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d';
+    // Calculate appropriate distance for zoom level (lower distance = higher zoom)
+    const distance = Math.pow(2, 20 - currentZoom) * 1000;
+    const newUrl = `${baseUrl}${distance}!2d-84.87285!3d39.5097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f${currentZoom}.1!3m3!1m2!1s0x884073d2b1b0b3a5%3A0x2b8e0b0b0b0b0b0b!2sMiami%20University%2C%20Oxford%2C%20OH!5e0!3m2!1sen!2sus!4v1234567890123&gestureHandling=greedy`;
+    mapIframe.src = newUrl;
+    zoomLevel.textContent = currentZoom;
+}
+
+// Show zoom level indicator
+function showZoomIndicator() {
+    zoomIndicator.style.opacity = '1';
+    setTimeout(() => {
+        zoomIndicator.style.opacity = '0';
+    }, 2000);
+}
+
+// Fullscreen toggle
+function toggleFullscreen() {
+    if (!isFullscreen) {
+        // Enter fullscreen
+        mapContainer.classList.add('fixed', 'inset-0', 'z-50', 'bg-white');
+        mapContainer.style.height = '100vh';
+        fullscreenIcon.className = 'fas fa-compress';
+        isFullscreen = true;
         
-        if (mapIframe && mapOverlay) {
-            let mapActive = false;
-            
-            // Enable map interaction on click
-            mapOverlay.addEventListener('click', function() {
-                mapActive = true;
-                mapOverlay.style.opacity = '0';
-                mapOverlay.style.pointerEvents = 'none';
-                
-                // Show a brief message
-                const hint = mapOverlay.querySelector('div');
-                hint.innerHTML = '<i class="fas fa-check mr-2"></i>Map activated! Scroll to zoom';
-                mapOverlay.style.opacity = '1';
-                
-                setTimeout(() => {
-                    mapOverlay.style.opacity = '0';
-                }, 1500);
-            });
-            
-            // Reset map interaction when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!mapIframe.parentElement.contains(e.target) && mapActive) {
-                    mapActive = false;
-                    mapOverlay.style.opacity = '1';
-                    mapOverlay.style.pointerEvents = 'auto';
-                    const hint = mapOverlay.querySelector('div');
-                    hint.innerHTML = '<i class="fas fa-mouse-pointer mr-2"></i>Click to interact with map';
-                }
-            });
-            
-            // Handle scroll wheel events on the map container
-            const mapContainer = mapIframe.parentElement;
-            mapContainer.addEventListener('wheel', function(e) {
-                if (!mapActive) {
+        // Add close button in fullscreen
+        const closeBtn = document.createElement('button');
+        closeBtn.id = 'close-fullscreen';
+        closeBtn.className = 'absolute top-4 right-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg z-10 transition-colors';
+        closeBtn.innerHTML = '<i class="fas fa-times mr-2"></i>Close';
+        closeBtn.onclick = toggleFullscreen;
+        mapContainer.appendChild(closeBtn);
+    } else {
+        // Exit fullscreen
+        mapContainer.classList.remove('fixed', 'inset-0', 'z-50', 'bg-white');
+        mapContainer.style.height = '16rem'; // h-64
+        fullscreenIcon.className = 'fas fa-expand';
+        isFullscreen = false;
+        
+        // Remove close button
+        const closeBtn = document.getElementById('close-fullscreen');
+        if (closeBtn) closeBtn.remove();
+    }
+}
+
+// Keyboard shortcuts
+document.addEventListener('keydown', function(e) {
+    // Only work when map container is focused or in fullscreen
+    if (document.activeElement === mapContainer || isFullscreen) {
+        switch(e.key) {
+            case '+':
+            case '=':
+                e.preventDefault();
+                adjustMapZoom('in');
+                break;
+            case '-':
+            case '_':
+                e.preventDefault();
+                adjustMapZoom('out');
+                break;
+            case 'f':
+            case 'F':
+                e.preventDefault();
+                toggleFullscreen();
+                break;
+            case 'Escape':
+                if (isFullscreen) {
                     e.preventDefault();
-                    
-                    // Show hint to click for interaction
-                    const hint = mapOverlay.querySelector('div');
-                    hint.innerHTML = '<i class="fas fa-mouse-pointer mr-2"></i>Click first to enable scrolling';
-                    mapOverlay.style.opacity = '1';
-                    
-                    // Reset hint after 2 seconds
-                    setTimeout(() => {
-                        if (!mapActive) {
-                            hint.innerHTML = '<i class="fas fa-mouse-pointer mr-2"></i>Click to interact with map';
-                        }
-                    }, 2000);
+                    toggleFullscreen();
                 }
-            });
+                break;
         }
+    }
+});
+
+// Make map container focusable for keyboard shortcuts
+mapContainer.setAttribute('tabindex', '0');
+mapContainer.setAttribute('aria-label', 'Interactive map. Use +/- keys or buttons to zoom, F for fullscreen, scroll wheel to zoom');
+
+// Focus indicator
+mapContainer.addEventListener('focus', function() {
+    this.style.outline = '2px solid #10b981';
+    this.style.outlineOffset = '2px';
+});
+
+mapContainer.addEventListener('blur', function() {
+    this.style.outline = 'none';
+});
         
         // Copy research link function
         function copyResearchLink() {
