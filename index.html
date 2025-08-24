@@ -3317,6 +3317,16 @@ mapContainer.addEventListener('blur', function() {
             
             const currentMainSrc = mainImage.src;
             const currentMainAlt = mainImage.alt;
+            const currentThumbSrc = thumbImage.src;
+            
+            // Get just the filename for comparison
+            const mainFileName = currentMainSrc.split('/').pop();
+            const thumbFileName = currentThumbSrc.split('/').pop();
+            
+            // Prevent switching if the thumbnail is already the same as main image
+            if (mainFileName === thumbFileName) {
+                return;
+            }
             
             // Add touch feedback for mobile
             if ('ontouchstart' in window) {
@@ -3330,8 +3340,8 @@ mapContainer.addEventListener('blur', function() {
             mainImage.style.transform = 'translateY(-10px)';
             
             setTimeout(() => {
-                mainImage.src = newMainSrc;
-                mainImage.alt = newMainAlt;
+                mainImage.src = currentThumbSrc;
+                mainImage.alt = thumbImage.alt;
                 
                 thumbImage.src = currentMainSrc;
                 thumbImage.alt = currentMainAlt;
