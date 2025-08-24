@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="owlGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B7355;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A0522D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#654321;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="eyeGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#FFA500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8C00;stop-opacity:1" />
+    </radialGradient>
+    <linearGradient id="chestGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5DEB3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#DEB887;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Body -->
+  <ellipse cx="100" cy="130" rx="35" ry="40" fill="url(#owlGradient)" />
+  
+  <!-- Chest -->
+  <ellipse cx="100" cy="135" rx="20" ry="25" fill="url(#chestGradient)" />
+  
+  <!-- Head -->
+  <circle cx="100" cy="80" r="30" fill="url(#owlGradient)" />
+  
+  <!-- Facial disc -->
+  <circle cx="100" cy="80" r="25" fill="url(#chestGradient)" opacity="0.8" />
+  
+  <!-- Ear tufts -->
+  <path d="M 75 55 L 70 40 L 80 45 Z" fill="url(#owlGradient)" />
+  <path d="M 125 55 L 130 40 L 120 45 Z" fill="url(#owlGradient)" />
+  
+  <!-- Eyes -->
+  <circle cx="88" cy="75" r="12" fill="url(#eyeGradient)" />
+  <circle cx="112" cy="75" r="12" fill="url(#eyeGradient)" />
+  
+  <!-- Eye rings -->
+  <circle cx="88" cy="75" r="12" fill="none" stroke="#654321" stroke-width="2" />
+  <circle cx="112" cy="75" r="12" fill="none" stroke="#654321" stroke-width="2" />
+  
+  <!-- Pupils -->
+  <circle cx="88" cy="75" r="6" fill="#000" />
+  <circle cx="112" cy="75" r="6" fill="#000" />
+  
+  <!-- Eye highlights -->
+  <circle cx="90" cy="72" r="2" fill="#FFF" />
+  <circle cx="114" cy="72" r="2" fill="#FFF" />
+  
+  <!-- Beak -->
+  <path d="M 100 85 L 95 95 L 105 95 Z" fill="#8B7355" />
+  
+  <!-- Wing details -->
+  <ellipse cx="75" cy="125" rx="15" ry="25" fill="url(#owlGradient)" opacity="0.8" />
+  <ellipse cx="125" cy="125" rx="15" ry="25" fill="url(#owlGradient)" opacity="0.8" />
+  
+  <!-- Feather patterns on wings -->
+  <g stroke="#654321" stroke-width="1" fill="none" opacity="0.6">
+    <path d="M 65 115 Q 75 120 70 130" />
+    <path d="M 70 120 Q 80 125 75 135" />
+    <path d="M 75 125 Q 85 130 80 140" />
+    <path d="M 125 140 Q 115 130 120 125" />
+    <path d="M 130 135 Q 120 125 125 120" />
+    <path d="M 135 130 Q 125 120 130 115" />
+  </g>
+  
+  <!-- Chest pattern -->
+  <g stroke="#A0522D" stroke-width="1" fill="none" opacity="0.5">
+    <line x1="90" y1="125" x2="110" y2="125" />
+    <line x1="92" y1="135" x2="108" y2="135" />
+    <line x1="94" y1="145" x2="106" y2="145" />
+    <line x1="96" y1="155" x2="104" y2="155" />
+  </g>
+  
+  <!-- Talons -->
+  <g stroke="#2F4F4F" stroke-width="3" fill="none">
+    <path d="M 85 170 L 80 180 M 85 170 L 85 180 M 85 170 L 90 180" />
+    <path d="M 115 170 L 110 180 M 115 170 L 115 180 M 115 170 L 120 180" />
+  </g>
+</svg>

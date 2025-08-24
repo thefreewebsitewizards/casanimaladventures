@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="mooseGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B4513;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A0522D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#654321;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="antlerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5DEB3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D2B48C;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Body -->
+  <ellipse cx="100" cy="140" rx="40" ry="30" fill="url(#mooseGradient)" />
+  
+  <!-- Neck -->
+  <ellipse cx="100" cy="105" rx="18" ry="25" fill="url(#mooseGradient)" />
+  
+  <!-- Head -->
+  <ellipse cx="100" cy="75" rx="20" ry="18" fill="url(#mooseGradient)" />
+  
+  <!-- Snout -->
+  <ellipse cx="100" cy="85" rx="12" ry="8" fill="url(#mooseGradient)" />
+  
+  <!-- Large antlers -->
+  <g stroke="url(#antlerGradient)" stroke-width="4" fill="url(#antlerGradient)">
+    <!-- Left antler main branch -->
+    <path d="M 80 60 Q 70 45 65 30" stroke-width="4" fill="none" />
+    <path d="M 80 60 Q 75 50 70 40" stroke-width="4" fill="none" />
+    <!-- Left antler tines -->
+    <path d="M 70 45 L 60 40" stroke-width="3" fill="none" />
+    <path d="M 70 45 L 65 35" stroke-width="3" fill="none" />
+    <path d="M 75 50 L 70 45" stroke-width="2" fill="none" />
+    
+    <!-- Right antler main branch -->
+    <path d="M 120 60 Q 130 45 135 30" stroke-width="4" fill="none" />
+    <path d="M 120 60 Q 125 50 130 40" stroke-width="4" fill="none" />
+    <!-- Right antler tines -->
+    <path d="M 130 45 L 140 40" stroke-width="3" fill="none" />
+    <path d="M 130 45 L 135 35" stroke-width="3" fill="none" />
+    <path d="M 125 50 L 130 45" stroke-width="2" fill="none" />
+  </g>
+  
+  <!-- Ears -->
+  <ellipse cx="85" cy="68" rx="6" ry="10" fill="url(#mooseGradient)" transform="rotate(-15 85 68)" />
+  <ellipse cx="115" cy="68" rx="6" ry="10" fill="url(#mooseGradient)" transform="rotate(15 115 68)" />
+  
+  <!-- Eyes -->
+  <circle cx="90" cy="72" r="4" fill="#000" />
+  <circle cx="110" cy="72" r="4" fill="#000" />
+  <circle cx="91" cy="71" r="1" fill="#FFF" />
+  <circle cx="111" cy="71" r="1" fill="#FFF" />
+  
+  <!-- Nose -->
+  <ellipse cx="100" cy="88" rx="3" ry="2" fill="#000" />
+  
+  <!-- Mouth -->
+  <path d="M 100 91 Q 95 94 90 92" stroke="#654321" stroke-width="2" fill="none" />
+  <path d="M 100 91 Q 105 94 110 92" stroke="#654321" stroke-width="2" fill="none" />
+  
+  <!-- Dewlap (hanging skin under throat) -->
+  <ellipse cx="100" cy="95" rx="8" ry="12" fill="url(#mooseGradient)" opacity="0.8" />
+  
+  <!-- Legs -->
+  <rect x="75" y="165" width="6" height="25" fill="url(#mooseGradient)" />
+  <rect x="90" y="165" width="6" height="25" fill="url(#mooseGradient)" />
+  <rect x="104" y="165" width="6" height="25" fill="url(#mooseGradient)" />
+  <rect x="119" y="165" width="6" height="25" fill="url(#mooseGradient)" />
+  
+  <!-- Hooves -->
+  <ellipse cx="78" cy="192" rx="4" ry="3" fill="#2F4F4F" />
+  <ellipse cx="93" cy="192" rx="4" ry="3" fill="#2F4F4F" />
+  <ellipse cx="107" cy="192" rx="4" ry="3" fill="#2F4F4F" />
+  <ellipse cx="122" cy="192" rx="4" ry="3" fill="#2F4F4F" />
+  
+  <!-- Shoulder hump -->
+  <ellipse cx="100" cy="115" rx="25" ry="15" fill="url(#mooseGradient)" opacity="0.7" />
+  
+  <!-- Tail -->
+  <ellipse cx="140" cy="145" rx="4" ry="8" fill="url(#mooseGradient)" />
+</svg>

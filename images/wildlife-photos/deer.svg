@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="deerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D2691E;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#CD853F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A0522D;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="antlerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B7355;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#654321;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Body -->
+  <ellipse cx="100" cy="130" rx="35" ry="25" fill="url(#deerGradient)" />
+  
+  <!-- Neck -->
+  <ellipse cx="100" cy="100" rx="15" ry="20" fill="url(#deerGradient)" />
+  
+  <!-- Head -->
+  <ellipse cx="100" cy="75" rx="18" ry="15" fill="url(#deerGradient)" />
+  
+  <!-- Snout -->
+  <ellipse cx="100" cy="85" rx="8" ry="6" fill="url(#deerGradient)" />
+  
+  <!-- Antlers -->
+  <path d="M 85 65 L 80 45 M 80 50 L 75 45 M 80 55 L 85 50" stroke="url(#antlerGradient)" stroke-width="3" fill="none" />
+  <path d="M 115 65 L 120 45 M 120 50 L 125 45 M 120 55 L 115 50" stroke="url(#antlerGradient)" stroke-width="3" fill="none" />
+  
+  <!-- Ears -->
+  <ellipse cx="88" cy="68" rx="5" ry="8" fill="url(#deerGradient)" transform="rotate(-20 88 68)" />
+  <ellipse cx="112" cy="68" rx="5" ry="8" fill="url(#deerGradient)" transform="rotate(20 112 68)" />
+  
+  <!-- Inner ears -->
+  <ellipse cx="88" cy="68" rx="2" ry="4" fill="#FFB6C1" transform="rotate(-20 88 68)" />
+  <ellipse cx="112" cy="68" rx="2" ry="4" fill="#FFB6C1" transform="rotate(20 112 68)" />
+  
+  <!-- Eyes -->
+  <circle cx="92" cy="72" r="3" fill="#000" />
+  <circle cx="108" cy="72" r="3" fill="#000" />
+  <circle cx="93" cy="71" r="1" fill="#FFF" />
+  <circle cx="109" cy="71" r="1" fill="#FFF" />
+  
+  <!-- Nose -->
+  <ellipse cx="100" cy="88" rx="2" ry="1.5" fill="#000" />
+  
+  <!-- Mouth -->
+  <path d="M 100 90 Q 95 92 92 90" stroke="#654321" stroke-width="1" fill="none" />
+  <path d="M 100 90 Q 105 92 108 90" stroke="#654321" stroke-width="1" fill="none" />
+  
+  <!-- Legs -->
+  <rect x="80" y="150" width="4" height="25" fill="url(#deerGradient)" />
+  <rect x="90" y="150" width="4" height="25" fill="url(#deerGradient)" />
+  <rect x="106" y="150" width="4" height="25" fill="url(#deerGradient)" />
+  <rect x="116" y="150" width="4" height="25" fill="url(#deerGradient)" />
+  
+  <!-- Hooves -->
+  <ellipse cx="82" cy="177" rx="3" ry="2" fill="#2F4F4F" />
+  <ellipse cx="92" cy="177" rx="3" ry="2" fill="#2F4F4F" />
+  <ellipse cx="108" cy="177" rx="3" ry="2" fill="#2F4F4F" />
+  <ellipse cx="118" cy="177" rx="3" ry="2" fill="#2F4F4F" />
+  
+  <!-- Tail -->
+  <ellipse cx="135" cy="135" rx="3" ry="8" fill="url(#deerGradient)" />
+  
+  <!-- Spots -->
+  <circle cx="90" cy="125" r="2" fill="#FFF" opacity="0.7" />
+  <circle cx="110" cy="130" r="2" fill="#FFF" opacity="0.7" />
+  <circle cx="105" cy="120" r="1.5" fill="#FFF" opacity="0.7" />
+  <circle cx="85" cy="135" r="1.5" fill="#FFF" opacity="0.7" />
+</svg>

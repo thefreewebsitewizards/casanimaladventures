@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="hedgehogGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B7355;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A0522D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#654321;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bellyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5DEB3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#DEB887;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Body -->
+  <ellipse cx="100" cy="120" rx="40" ry="25" fill="url(#hedgehogGradient)" />
+  
+  <!-- Belly -->
+  <ellipse cx="100" cy="135" rx="25" ry="15" fill="url(#bellyGradient)" />
+  
+  <!-- Head -->
+  <ellipse cx="100" cy="85" rx="20" ry="18" fill="url(#hedgehogGradient)" />
+  
+  <!-- Snout -->
+  <ellipse cx="100" cy="95" rx="12" ry="8" fill="url(#bellyGradient)" />
+  
+  <!-- Nose -->
+  <ellipse cx="100" cy="98" rx="2" ry="1.5" fill="#000" />
+  
+  <!-- Eyes -->
+  <circle cx="92" cy="80" r="3" fill="#000" />
+  <circle cx="108" cy="80" r="3" fill="#000" />
+  <circle cx="93" cy="79" r="1" fill="#FFF" />
+  <circle cx="109" cy="79" r="1" fill="#FFF" />
+  
+  <!-- Ears -->
+  <ellipse cx="88" cy="75" rx="4" ry="6" fill="url(#hedgehogGradient)" transform="rotate(-20 88 75)" />
+  <ellipse cx="112" cy="75" rx="4" ry="6" fill="url(#hedgehogGradient)" transform="rotate(20 112 75)" />
+  
+  <!-- Spines/Quills -->
+  <g stroke="#654321" stroke-width="2" fill="none">
+    <line x1="70" y1="100" x2="65" y2="90" />
+    <line x1="75" y1="95" x2="70" y2="85" />
+    <line x1="80" y1="90" x2="75" y2="80" />
+    <line x1="85" y1="85" x2="80" y2="75" />
+    <line x1="90" y1="82" x2="85" y2="72" />
+    <line x1="95" y1="80" x2="90" y2="70" />
+    <line x1="105" y1="80" x2="110" y2="70" />
+    <line x1="110" y1="82" x2="115" y2="72" />
+    <line x1="115" y1="85" x2="120" y2="75" />
+    <line x1="120" y1="90" x2="125" y2="80" />
+    <line x1="125" y1="95" x2="130" y2="85" />
+    <line x1="130" y1="100" x2="135" y2="90" />
+    
+    <!-- Back spines -->
+    <line x1="75" y1="110" x2="70" y2="100" />
+    <line x1="85" y1="105" x2="80" y2="95" />
+    <line x1="95" y1="102" x2="90" y2="92" />
+    <line x1="105" y1="102" x2="110" y2="92" />
+    <line x1="115" y1="105" x2="120" y2="95" />
+    <line x1="125" y1="110" x2="130" y2="100" />
+    
+    <!-- Side spines -->
+    <line x1="65" y1="115" x2="55" y2="110" />
+    <line x1="70" y1="125" x2="60" y2="120" />
+    <line x1="75" y1="135" x2="65" y2="130" />
+    <line x1="125" y1="135" x2="135" y2="130" />
+    <line x1="130" y1="125" x2="140" y2="120" />
+    <line x1="135" y1="115" x2="145" y2="110" />
+  </g>
+  
+  <!-- Legs -->
+  <ellipse cx="80" cy="150" rx="4" ry="8" fill="url(#bellyGradient)" />
+  <ellipse cx="95" cy="152" rx="4" ry="8" fill="url(#bellyGradient)" />
+  <ellipse cx="105" cy="152" rx="4" ry="8" fill="url(#bellyGradient)" />
+  <ellipse cx="120" cy="150" rx="4" ry="8" fill="url(#bellyGradient)" />
+  
+  <!-- Paws -->
+  <ellipse cx="80" cy="160" rx="3" ry="2" fill="#654321" />
+  <ellipse cx="95" cy="162" rx="3" ry="2" fill="#654321" />
+  <ellipse cx="105" cy="162" rx="3" ry="2" fill="#654321" />
+  <ellipse cx="120" cy="160" rx="3" ry="2" fill="#654321" />
+</svg>

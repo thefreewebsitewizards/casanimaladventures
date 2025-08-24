@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bearGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B4513;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A0522D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#654321;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="snoutGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#DEB887;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D2B48C;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Body -->
+  <ellipse cx="100" cy="135" rx="45" ry="35" fill="url(#bearGradient)" />
+  
+  <!-- Head -->
+  <circle cx="100" cy="85" r="30" fill="url(#bearGradient)" />
+  
+  <!-- Snout -->
+  <ellipse cx="100" cy="95" rx="18" ry="12" fill="url(#snoutGradient)" />
+  
+  <!-- Nose -->
+  <ellipse cx="100" cy="100" rx="4" ry="3" fill="#000" />
+  
+  <!-- Eyes -->
+  <circle cx="88" cy="78" r="5" fill="#000" />
+  <circle cx="112" cy="78" r="5" fill="#000" />
+  <circle cx="89" cy="77" r="1.5" fill="#FFF" />
+  <circle cx="113" cy="77" r="1.5" fill="#FFF" />
+  
+  <!-- Ears -->
+  <circle cx="75" cy="65" r="12" fill="url(#bearGradient)" />
+  <circle cx="125" cy="65" r="12" fill="url(#bearGradient)" />
+  <circle cx="75" cy="65" r="6" fill="#FFB6C1" />
+  <circle cx="125" cy="65" r="6" fill="#FFB6C1" />
+  
+  <!-- Mouth -->
+  <path d="M 100 105 Q 92 110 85 108" stroke="#000" stroke-width="2" fill="none" />
+  <path d="M 100 105 Q 108 110 115 108" stroke="#000" stroke-width="2" fill="none" />
+  
+  <!-- Front legs -->
+  <ellipse cx="75" cy="160" rx="12" ry="18" fill="url(#bearGradient)" />
+  <ellipse cx="125" cy="160" rx="12" ry="18" fill="url(#bearGradient)" />
+  
+  <!-- Back legs -->
+  <ellipse cx="80" cy="170" rx="15" ry="10" fill="url(#bearGradient)" />
+  <ellipse cx="120" cy="170" rx="15" ry="10" fill="url(#bearGradient)" />
+  
+  <!-- Claws -->
+  <g stroke="#2F4F4F" stroke-width="2" fill="none">
+    <line x1="70" y1="175" x2="68" y2="180" />
+    <line x1="75" y1="175" x2="73" y2="180" />
+    <line x1="80" y1="175" x2="78" y2="180" />
+    <line x1="120" y1="175" x2="118" y2="180" />
+    <line x1="125" y1="175" x2="123" y2="180" />
+    <line x1="130" y1="175" x2="128" y2="180" />
+  </g>
+  
+  <!-- Chest marking -->
+  <ellipse cx="100" cy="125" rx="15" ry="10" fill="url(#snoutGradient)" opacity="0.7" />
+</svg>

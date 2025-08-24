@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="beaverGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B4513;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A0522D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#654321;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="tailGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#654321;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2F4F4F;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Body -->
+  <ellipse cx="100" cy="125" rx="35" ry="30" fill="url(#beaverGradient)" />
+  
+  <!-- Head -->
+  <ellipse cx="100" cy="80" rx="25" ry="22" fill="url(#beaverGradient)" />
+  
+  <!-- Snout -->
+  <ellipse cx="100" cy="90" rx="12" ry="8" fill="url(#beaverGradient)" />
+  
+  <!-- Nose -->
+  <ellipse cx="100" cy="93" rx="2" ry="1.5" fill="#000" />
+  
+  <!-- Eyes -->
+  <circle cx="90" cy="75" r="4" fill="#000" />
+  <circle cx="110" cy="75" r="4" fill="#000" />
+  <circle cx="91" cy="74" r="1" fill="#FFF" />
+  <circle cx="111" cy="74" r="1" fill="#FFF" />
+  
+  <!-- Ears -->
+  <ellipse cx="85" cy="68" rx="5" ry="7" fill="url(#beaverGradient)" transform="rotate(-20 85 68)" />
+  <ellipse cx="115" cy="68" rx="5" ry="7" fill="url(#beaverGradient)" transform="rotate(20 115 68)" />
+  
+  <!-- Front teeth -->
+  <rect x="96" y="95" width="3" height="8" fill="#FFF" />
+  <rect x="101" y="95" width="3" height="8" fill="#FFF" />
+  
+  <!-- Mouth -->
+  <path d="M 100 98 Q 95 101 90 99" stroke="#654321" stroke-width="1" fill="none" />
+  <path d="M 100 98 Q 105 101 110 99" stroke="#654321" stroke-width="1" fill="none" />
+  
+  <!-- Front paws -->
+  <ellipse cx="80" cy="145" rx="6" ry="12" fill="url(#beaverGradient)" />
+  <ellipse cx="120" cy="145" rx="6" ry="12" fill="url(#beaverGradient)" />
+  
+  <!-- Back legs -->
+  <ellipse cx="85" cy="155" rx="8" ry="8" fill="url(#beaverGradient)" />
+  <ellipse cx="115" cy="155" rx="8" ry="8" fill="url(#beaverGradient)" />
+  
+  <!-- Webbed feet -->
+  <ellipse cx="85" cy="165" rx="6" ry="4" fill="#2F4F4F" />
+  <ellipse cx="115" cy="165" rx="6" ry="4" fill="#2F4F4F" />
+  
+  <!-- Tail (flat and scaly) -->
+  <ellipse cx="140" cy="135" rx="15" ry="25" fill="url(#tailGradient)" transform="rotate(20 140 135)" />
+  
+  <!-- Tail scales pattern -->
+  <g stroke="#1C1C1C" stroke-width="1" fill="none" opacity="0.6">
+    <line x1="130" y1="120" x2="150" y2="125" transform="rotate(20 140 135)" />
+    <line x1="130" y1="130" x2="150" y2="135" transform="rotate(20 140 135)" />
+    <line x1="130" y1="140" x2="150" y2="145" transform="rotate(20 140 135)" />
+    <line x1="130" y1="150" x2="150" y2="155" transform="rotate(20 140 135)" />
+  </g>
+  
+  <!-- Whiskers -->
+  <line x1="75" y1="85" x2="85" y2="83" stroke="#654321" stroke-width="1" />
+  <line x1="75" y1="90" x2="85" y2="90" stroke="#654321" stroke-width="1" />
+  <line x1="115" y1="83" x2="125" y2="85" stroke="#654321" stroke-width="1" />
+  <line x1="115" y1="90" x2="125" y2="90" stroke="#654321" stroke-width="1" />
+</svg>
