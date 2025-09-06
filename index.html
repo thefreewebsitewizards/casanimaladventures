@@ -1570,6 +1570,23 @@
             footer .footer-grid {
                 gap: 1.5rem !important;
             }
+            
+            /* Meet Your Wildlife Guide Mobile Touch Fix */
+            .group.cursor-pointer {
+                touch-action: manipulation !important;
+                -webkit-tap-highlight-color: transparent !important;
+                user-select: none !important;
+                -webkit-user-select: none !important;
+            }
+            
+            .group.cursor-pointer:active {
+                transform: scale(0.95) !important;
+                transition: transform 0.1s ease !important;
+            }
+            
+            .group.cursor-pointer img {
+                pointer-events: none !important;
+            }
         }
 
     </style>
