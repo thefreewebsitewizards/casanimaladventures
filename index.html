@@ -1731,7 +1731,8 @@
             }
 
             #contact .bg-white {
-                padding: 1.5rem !important;
+                padding: 1.25rem !important;
+                padding-bottom: 0.75rem !important;
                 margin-bottom: 1rem;
             }
 
@@ -1894,6 +1895,20 @@
             .group.cursor-pointer img {
                 pointer-events: none !important;
             }
+        }
+        /* Heartbeat animation for heart icon */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            20% { transform: scale(1.15); }
+            40% { transform: scale(1); }
+            60% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+        .heart-beat {
+            animation: heartbeat 1.4s ease-in-out infinite;
+            transform-origin: center;
+            will-change: transform;
+            line-height: 1;
         }
     </style>
 </head>
@@ -2446,10 +2461,6 @@
                                 class="w-12 h-12 bg-sage-100 hover:bg-sage-200 text-sage-700 rounded-full flex items-center justify-center transition-all">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="https://www.youtube.com/@casanimaladventures" target="_blank"
-                                class="w-12 h-12 bg-sage-100 hover:bg-sage-200 text-sage-700 rounded-full flex items-center justify-center transition-all">
-                                <i class="fab fa-youtube"></i>
-                            </a>
                             <a href="https://www.facebook.com/profile.php?id=61567946146382" target="_blank"
                                 class="w-12 h-12 bg-sage-100 hover:bg-sage-200 text-sage-700 rounded-full flex items-center justify-center transition-all">
                                 <i class="fab fa-facebook"></i>
@@ -2587,6 +2598,26 @@
                         Explore Opportunities
                     </a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eco Travel Section (restored to fix navigation link) -->
+    <section id="eco-travel" class="section-padding py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="fade-in mb-8">
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-stone-800 mb-4">Eco Travel</h2>
+                    <p class="text-lg text-stone-600 max-w-2xl mx-auto">
+                        Explore ethical, conservation-first travel experiences. More details are being published.
+                        In the meantime, reach out for available trips and programs.
+                    </p>
+                </div>
+                <a href="#contact"
+                   class="inline-flex items-center bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300">
+                   <i class="fas fa-comments mr-2"></i>
+                   Contact for Eco Travel
+                </a>
             </div>
         </div>
     </section>
@@ -2753,15 +2784,15 @@
             <div class="facilities-grid grid grid-cols-1 place-items-center gap-8 max-w-4xl mx-auto">
                 <!-- Wildlife at Heart - Primary Focus -->
                 <div
-                    class="bg-white rounded-2xl shadow-lg p-8 card-hover fade-in border-l-4 border-green-500 relative overflow-hidden max-w-xl w-full mx-auto text-center">
+                    class="bg-white rounded-2xl shadow-lg pt-6 px-8 pb-8 card-hover fade-in border-l-4 border-green-500 relative overflow-hidden max-w-xl w-full mx-auto text-center">
 
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-heart text-green-600 text-2xl"></i>
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-3 mx-auto">
+                        <i class="fas fa-heart text-green-600 text-3xl leading-none heart-beat"></i>
                     </div>
                     <h3 class="text-xl font-bold text-stone-800 mb-4">Wildlife at Heart</h3>
                     <p class="text-stone-600 mb-4">A dedicated organization focused on wildlife rehabilitation,
                         conservation education, and community outreach programs.</p>
-                    <ul class="space-y-2 text-sm text-stone-600 mb-6">
+                    <ul class="space-y-2 text-sm text-stone-600 mb-6 inline-block mx-auto text-left">
                         <li class="flex items-center">
                             <i class="fas fa-paw text-green-600 mr-2"></i>
                             Wildlife rehabilitation
@@ -2928,27 +2959,22 @@
             </div>
 
             <div class="contact-grid grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 max-w-6xl mx-auto">
-                <!-- Contact Form -->
-                <div class="bg-white rounded-2xl shadow-lg p-8 fade-in">
+                <!-- Contact Form + CTAs (stacked in left column) -->
+                <div class="fade-in flex flex-col gap-3 lg:self-start">
+                    <div class="bg-white rounded-2xl shadow-lg p-5 pb-1 contact-form-card self-start">
                     <h3 class="text-2xl font-bold text-stone-800 mb-6">Send Me a Message</h3>
 
                     <form id="contact-form">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="grid grid-cols-1 gap-6 mb-4">
                             <div>
                                 <label for="name" class="block text-stone-700 mb-2 font-medium">Your Name</label>
                                 <input type="text" id="name" name="name"
                                     class="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent transition-all"
-                                    placeholder="John Doe" required>
-                            </div>
-                            <div>
-                                <label for="email" class="block text-stone-700 mb-2 font-medium">Email Address</label>
-                                <input type="email" id="email" name="email"
-                                    class="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent transition-all"
-                                    placeholder="john@example.com" required>
+                                    placeholder="John Doe Smith" required>
                             </div>
                         </div>
 
-                        <div class="mb-6">
+                        <div class="mb-4">
                             <label for="interest" class="block text-stone-700 mb-2 font-medium">I'm Interested
                                 In</label>
                             <select id="interest" name="interest"
@@ -2963,7 +2989,7 @@
                             </select>
                         </div>
 
-                        <div class="mb-6">
+                        <div class="mb-4">
                             <label for="experience" class="block text-stone-700 mb-2 font-medium">Experience
                                 Level</label>
                             <select id="experience" name="experience"
@@ -2977,26 +3003,54 @@
                             </select>
                         </div>
 
-                        <div class="mb-6">
+                        <div class="mb-4">
                             <label for="message" class="block text-stone-700 mb-2 font-medium">Your Message</label>
                             <textarea id="message" name="message" rows="4"
                                 class="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent transition-all"
                                 placeholder="Tell me about your goals, interests, and how I can help you..."></textarea>
                         </div>
 
-                        <div class="mb-6">
-                            <label class="flex items-center">
-                                <input type="checkbox" id="interview" name="interview"
-                                    class="mr-3 w-4 h-4 text-sage-600 border-stone-300 rounded focus:ring-sage-500">
-                                <span class="text-stone-700">I would like to schedule an interview/consultation
-                                    call</span>
-                            </label>
-                        </div>
+                        
 
-                        <button type="submit" class="w-full btn-primary text-white py-3 rounded-lg font-semibold">
+                        <button type="submit" class="w-full btn-primary text-white py-2 rounded-lg font-semibold mb-4">
                             <i class="fas fa-paper-plane mr-2"></i>Send Message
                         </button>
                     </form>
+                    </div>
+                    <!-- CTA containers below the form card, outside the form -->
+                    <div class="space-y-3">
+                        <!-- 1:1 Wildlife Coaching -->
+                        <div class="flex items-center space-x-3 p-3 bg-white rounded-lg shadow-sm transition-all duration-200 hover:bg-sage-50 hover:shadow-md hover:-translate-y-0.5">
+                            <div class="w-10 h-10 bg-sage-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-paw text-sage-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-stone-800">
+                                    <a href="https://cassandraray.setmore.com/cassandraray" target="_blank" rel="noopener" class="transition-colors duration-200 hover:text-sage-700 hover:underline">
+                                        1:1 Wildlife Coaching
+                                        <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+                                    </a>
+                                </h4>
+                                <p class="text-stone-600 text-sm">Get personalized support to build your path in wildlife and conservation.</p>
+                            </div>
+                        </div>
+
+                        <!-- Join My Travel Priority Chat -->
+                        <div class="flex items-center space-x-3 p-3 bg-white rounded-lg shadow-sm transition-all duration-200 hover:bg-sage-50 hover:shadow-md hover:-translate-y-0.5">
+                            <div class="w-10 h-10 bg-sage-100 rounded-full flex items-center justify-center">
+                                <i class="fab fa-instagram text-sage-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-stone-800">
+                                    <a href="https://ig.me/j/AbaSzknU_S4aAgbv/" target="_blank" rel="noopener" class="transition-colors duration-200 hover:text-sage-700 hover:underline">
+                                        Join My Travel Priority Chat
+                                        <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+                                    </a>
+                                </h4>
+                                <p class="text-stone-600 text-sm">Join my Instagram priority chat to get first access to new trips, updates, and conservation adventures.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- Contact Information -->
                 <div class="fade-in">
@@ -3165,6 +3219,31 @@
         </div>
     </section>
 
+    <!-- Newsletter Signup (restored) -->
+    <section id="newsletter" class="section-padding py-16 bg-sage-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-8 fade-in">
+                <h3 class="text-2xl font-bold text-stone-800 mb-4">Join the Email List</h3>
+                <p class="text-stone-600 mb-6">Get updates about internships, trips, and conservation news.</p>
+                <form id="newsletter-form">
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <input type="email" name="email" required placeholder="you@example.com"
+                               class="flex-1 px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent" />
+                        <input type="hidden" name="context" value="newsletter_signup" />
+                        <input type="hidden" name="to_email" value="ogajd01230@gmail.com" />
+                        <button type="submit"
+                                class="px-6 py-3 btn-primary text-white rounded-lg font-semibold">
+                            Subscribe
+                        </button>
+                    </div>
+                    <p class="text-xs text-stone-500 mt-3">We respect your privacy. Unsubscribe anytime.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    
+
     <!-- Works Cited Section -->
     <section class="py-16 bg-stone-50">
         <div class="container mx-auto px-4">
@@ -3267,10 +3346,6 @@
                         <a href="https://instagram.com/casanimaladventures" target="_blank"
                             class="w-10 h-10 bg-stone-700 hover:bg-sage-600 rounded-full flex items-center justify-center transition-colors">
                             <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://www.youtube.com/@casanimaladventures" target="_blank"
-                            class="w-10 h-10 bg-stone-700 hover:bg-sage-600 rounded-full flex items-center justify-center transition-colors">
-                            <i class="fab fa-youtube"></i>
                         </a>
                         <a href="https://www.facebook.com/profile.php?id=61567946146382" target="_blank"
                             class="w-10 h-10 bg-stone-700 hover:bg-sage-600 rounded-full flex items-center justify-center transition-colors">
@@ -3666,35 +3741,156 @@
             }
         });
     </script>
+    <!-- Priority Chat (restored) -->
+    <a href="https://wa.me/13303383270" target="_blank" aria-label="Priority Chat"
+       class="fixed bottom-6 right-6 z-10 inline-flex items-center px-4 py-3 rounded-full shadow-xl bg-green-600 hover:bg-green-700 text-white font-semibold transition-transform transform hover:scale-105">
+        <i class="fab fa-whatsapp mr-2"></i>
+        Priority Chat
+    </a>
+
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
         (function () {
             emailjs.init("bwrVikDSJt6AzaPJv");
         })();
 
+        // EmailJS configuration
+        const EMAILJS_SERVICE_ID = "";
+        const EMAILJS_TEMPLATE_ID_INTERNAL = "";
+        // Set this to your auto-reply template ID in EmailJS dashboard
+        // Leave empty if you haven't created one yet
+        let EMAILJS_TEMPLATE_ID_AUTOREPLY = "";
+
+        // Helper: send an auto-reply email to a dynamic recipient using a configured template
+        function sendAutoReply(toEmail, extraParams = {}) {
+            if (!EMAILJS_TEMPLATE_ID_AUTOREPLY) {
+                console.log('[EmailJS] Auto-reply template not configured; skipping auto-reply.');
+                return Promise.resolve();
+            }
+            const params = {
+                to_email: toEmail || '',
+                reply_to: toEmail || '',
+                ...extraParams
+            };
+            console.log('[EmailJS] Sending auto-reply to:', toEmail, 'with params:', params);
+            return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID_AUTOREPLY, params);
+        }
+
         document.getElementById("contact-form").addEventListener("submit", function (event) {
             event.preventDefault();
 
-            const button = this.querySelector("button[type='submit']");
-            button.disabled = true;
-            button.textContent = "Sending...";
+            const name = this.querySelector('#name') ? this.querySelector('#name').value : '';
+            const interestEl = this.querySelector('#interest');
+            const experienceEl = this.querySelector('#experience');
+            const message = this.querySelector('#message') ? this.querySelector('#message').value : '';
 
-            emailjs.sendForm("service_plufk58", "template_n94e5ci", this)
-                .then(() => {
-                    alert("✅ Your message has been sent successfully!");
-                    this.reset();
-                })
-                .catch((error) => {
-                    console.error("❌ FAILED...", error);
-                    alert("❌ Failed to send message. Please try again.");
-                })
-                .finally(() => {
-                    button.disabled = false;
-                    button.textContent = "Send Message";
-                });
+            const interestVal = interestEl ? interestEl.value : '';
+            const interestText = interestEl && interestEl.selectedOptions && interestEl.selectedOptions[0]
+                ? interestEl.selectedOptions[0].text
+                : (interestVal ? interestVal.replace(/-/g, ' ') : '');
 
+            const experienceVal = experienceEl ? experienceEl.value : '';
+            const experienceText = experienceEl && experienceEl.selectedOptions && experienceEl.selectedOptions[0]
+                ? experienceEl.selectedOptions[0].text
+                : (experienceVal ? experienceVal.replace(/-/g, ' ') : '');
+
+            const subject = [name, interestText, experienceText].filter(Boolean).join(' - ');
+            const body = message || '';
+            const mailtoUrl = `mailto:cassandra@casanimaladventures.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            if (window.location.hash === '#test') {
+                console.log('[Test] Would open mail client with URL:', mailtoUrl);
+                alert('✅ Built mailto URL for contact form (test mode).');
+            } else {
+                window.location.href = mailtoUrl;
+            }
             return false;
         });
+
+        // Newsletter signup handling (restored)
+        const newsletterForm = document.getElementById("newsletter-form");
+        if (newsletterForm) {
+            newsletterForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                const button = this.querySelector("button[type='submit']");
+                button.disabled = true;
+                button.textContent = "Subscribing...";
+
+                // Ensure EmailJS recipient variable is set
+                const toEmailField = this.querySelector("input[name='to_email']");
+                if (toEmailField) {
+                    toEmailField.value = "ogajd01230@gmail.com";
+                }
+                const emailInput = this.querySelector('input[name="email"]');
+
+                emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID_INTERNAL, this)
+                    .then(() => {
+                        // Optional auto-reply to the test address or the subscriber
+                        const toEmail = toEmailField ? toEmailField.value : (emailInput ? emailInput.value : "");
+                        return sendAutoReply(toEmail, {
+                            context: 'newsletter_signup',
+                            email: emailInput ? emailInput.value : ''
+                        });
+                    })
+                    .then(() => {
+                        alert("✅ You’ve been added to the email list!");
+                        this.reset();
+                    })
+                    .catch((error) => {
+                        console.error("[EmailJS] Newsletter subscribe failed:", error);
+                        const detail = (error && (error.text || error.message))
+                            || (typeof error === 'string' ? error : '');
+                        const msg = detail ? `❌ Failed to subscribe: ${detail}` : "❌ Failed to subscribe. Please try again.";
+                        alert(msg);
+                    })
+                    .finally(() => {
+                        button.disabled = false;
+                        button.textContent = "Subscribe";
+                    });
+                });
+        }
+        
+        // Automated test harness (runs only when URL hash is #test)
+        (function runFormTestsIfRequested() {
+            if (window.location.hash !== '#test') return;
+            console.log('[Test] Starting automated form submission tests...');
+
+            // Newsletter form test
+            const nf = document.getElementById('newsletter-form');
+            if (nf) {
+                const emailInput = nf.querySelector('input[name="email"]');
+                if (emailInput) emailInput.value = 'ogajd01230@gmail.com';
+                try {
+                    nf.dispatchEvent(new Event('submit', { cancelable: true }));
+                    console.log('[Test] Newsletter form submitted');
+                } catch (e) {
+                    console.error('[Test] Newsletter form submission error:', e);
+                }
+            } else {
+                console.warn('[Test] Newsletter form not found.');
+            }
+
+            // Contact form test (now mailto-based; avoids actually opening the mail app)
+            const cf = document.getElementById('contact-form');
+            if (cf) {
+                const setVal = (sel, val) => { const el = cf.querySelector(sel); if (el) el.value = val; };
+                setVal('#name', 'Test Runner');
+                const interestEl = cf.querySelector('#interest');
+                if (interestEl) interestEl.value = 'wildlife-coaching';
+                setVal('#message', 'Automated test message to verify mailto submission.');
+                try {
+                    cf.dispatchEvent(new Event('submit', { cancelable: true }));
+                    console.log('[Test] Contact form mailto URL built');
+                } catch (e) {
+                    console.error('[Test] Contact form submission error:', e);
+                }
+            } else {
+                console.warn('[Test] Contact form not found.');
+            }
+
+            console.log('[Test] Form tests dispatched. Check alerts and EmailJS logs.');
+        })();
     </script>
 
 </body>
