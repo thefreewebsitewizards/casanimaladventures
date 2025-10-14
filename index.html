@@ -3610,7 +3610,7 @@
 
         // Make map container focusable for keyboard shortcuts
         mapContainer.setAttribute('tabindex', '0');
-        mapContainer.setAttribute('aria-label', 'Interactive map. Use +/- keys or buttons to zoom, F for fullscreen, scroll wheel to zoom');
+        mapContainer.setAttribute('aria-label', 'Interactive map. Use scroll wheel or two-finger pinch to zoom. Press F for fullscreen.');
 
         // Focus indicator
         mapContainer.addEventListener('focus', function () {
@@ -3621,6 +3621,53 @@
         mapContainer.addEventListener('blur', function () {
             this.style.outline = 'none';
         });
+
+        // Enable scroll-wheel zoom
+        mapContainer.addEventListener('wheel', function (e) {
+            e.preventDefault();
+            adjustMapZoom(e.deltaY < 0 ? 'in' : 'out');
+        }, { passive: false });
+
+        // Enable two-finger pinch zoom on touch devices
+        let pinchActive = false;
+        let lastPinchDistance = 0;
+
+        function getTouchDistance(touches) {
+            const t1 = touches[0];
+            const t2 = touches[1];
+            const dx = t1.clientX - t2.clientX;
+            const dy = t1.clientY - t2.clientY;
+            return Math.hypot(dx, dy);
+        }
+
+        mapContainer.addEventListener('touchstart', function (e) {
+            if (e.touches.length === 2) {
+                pinchActive = true;
+                lastPinchDistance = getTouchDistance(e.touches);
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        mapContainer.addEventListener('touchmove', function (e) {
+            if (pinchActive && e.touches.length === 2) {
+                const dist = getTouchDistance(e.touches);
+                if (Math.abs(dist - lastPinchDistance) > 8) {
+                    adjustMapZoom(dist > lastPinchDistance ? 'in' : 'out');
+                    lastPinchDistance = dist;
+                    showZoomIndicator();
+                }
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        mapContainer.addEventListener('touchend', function (e) {
+            if (e.touches.length < 2) {
+                pinchActive = false;
+            }
+        }, { passive: true });
+
+        // Prevent default touch behaviors interfering with pinch zoom
+        mapContainer.style.touchAction = 'none';
 
         // Copy research link function
         function copyResearchLink() {
