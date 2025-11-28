@@ -2757,6 +2757,11 @@
                                 <i class="fas fa-leaf mr-2"></i>Join the Challenge
                             </a>
 
+                            <button id="wild-patch-toggle" type="button"
+                                class="btn-secondary text-white px-6 py-3 rounded-lg font-semibold text-center">
+                                <i class="fas fa-eye-slash mr-2"></i>Hide Challenge Details
+                            </button>
+
                         </div>
                     </div>
 
@@ -2798,6 +2803,31 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Embedded Wild Patch Challenge Site (toggleable) -->
+    <section id="wild-patch-embed-section" class="section-padding py-1 bg-white">
+        <div class="container mx-auto px-4">
+            <div id="wild-patch-embed" class="bg-white rounded-lg shadow border border-sage-200 p-2 max-w-xl mx-auto">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-display text-2xl font-bold text-stone-800">Challenge Details</h3>
+                    <a href="https://sites.google.com/miamioh.edu/thewildpatchchallenge/home" target="_blank" rel="noopener noreferrer"
+                       class="inline-flex items-center text-sage-700 hover:text-sage-800 font-semibold">
+                        <i class="fas fa-external-link-alt mr-2"></i>Open in new tab
+                    </a>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-stone-600 text-xs">If the embedded page doesn’t load, use the link above.</p>
+                    <div class="w-full">
+                        <iframe
+                            src="https://sites.google.com/miamioh.edu/thewildpatchchallenge/home"
+                            title="The Wild Patch Challenge"
+                            loading="lazy"
+                            class="w-full h-[150px] md:h-[200px] rounded-md border border-sage-200"></iframe>
                     </div>
                 </div>
             </div>
@@ -3635,6 +3665,27 @@
                     thumb.addEventListener('touchstart', function (e) {
                         e.preventDefault();
                     });
+                });
+            }
+        });
+
+        // Wild Patch embed toggle
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleBtn = document.getElementById('wild-patch-toggle');
+            const embedPanel = document.getElementById('wild-patch-embed');
+            if (toggleBtn && embedPanel) {
+                // Set initial label based on current visibility
+                const initiallyHidden = embedPanel.classList.contains('hidden');
+                toggleBtn.innerHTML = initiallyHidden
+                    ? '<i class="fas fa-eye mr-2"></i>View Challenge Details'
+                    : '<i class="fas fa-eye-slash mr-2"></i>Hide Challenge Details';
+                toggleBtn.addEventListener('click', function () {
+                    const isHidden = embedPanel.classList.contains('hidden');
+                    embedPanel.classList.toggle('hidden');
+                    // Update button label and icon
+                    toggleBtn.innerHTML = isHidden
+                        ? '<i class="fas fa-eye-slash mr-2"></i>Hide Challenge Details'
+                        : '<i class="fas fa-eye mr-2"></i>View Challenge Details';
                 });
             }
         });
