@@ -3354,11 +3354,16 @@
                     const templateID = 'template_cju5lcw';
                     const confirmationTemplateID = 'template_j4rypv9';
                     
-                    // Send both notification (to you) and confirmation (to user)
-                    Promise.all([
-                        emailjs.sendForm(serviceID, templateID, this),
-                        emailjs.sendForm(serviceID, confirmationTemplateID, this)
-                    ])
+                    // Send notification email (Critical)
+                    const notificationPromise = emailjs.sendForm(serviceID, templateID, this);
+                    
+                    // Send confirmation email (Non-critical) - Fire and forget
+                    // We initiate this immediately to capture form data before reset
+                    const confirmationPromise = emailjs.sendForm(serviceID, confirmationTemplateID, this)
+                        .catch(err => console.warn('Confirmation email failed (non-critical):', err));
+
+                    // Wait for the main notification
+                    notificationPromise
                         .then(() => {
                             // Success
                             submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Sent Successfully!';
